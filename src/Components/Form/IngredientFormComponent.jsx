@@ -4,24 +4,27 @@ import InputComponent from "../Input/InputComponent";
 import classes from "./FormStyle.module.css"
 import Button from "../Button/Button";
 
-const IngredientFormComponent = ({options, onChange, recipeTitle}) => {
+const IngredientFormComponent = ({options, onChange, recipeTitle, categories}) => {
 
     const [ingredients, setIngredients] = useState([]);
+
+    const [isAdded, setIsAdded] = useState(false);
 
     const [ingredient, setIngredient] = useState({
         id: "",
         recipeName: recipeTitle,
-        name: "",
+        ingredientName: "",
         amount: "",
-        startUnit:"",
-        endUnit:"",
-        category: "",
+        startUnit: "",
+        endUnit: "",
+        categoryName: "",
         adjustingFactor: ""
     })
 
 
     const addIngredient = (e) => {
 
+        setIsAdded(true);
         e.preventDefault();
 
         const newIngredient = {
@@ -32,33 +35,40 @@ const IngredientFormComponent = ({options, onChange, recipeTitle}) => {
         setIngredients([...ingredients, newIngredient])
 
         onChange([...ingredients, newIngredient])
+        console.log(ingredients)
 
         setIngredient({
             id:"",
-            name: "",
-            recipeName: recipeTitle,
+            ingredientName: "",
+            recipeName: "",
             amount: "",
             startUnit:"",
             endUnit:"",
-            category: "",
+            categoryName: "",
             adjustingFactor: ""
         })
     }
 
     const deleteIngredient = (ingr) => {
-        setIngredients(ingredients.filter(ingredient => ingredient.id !== ingr.id))
+        const ingredientsFilteredArray = ingredients.filter(ingredient => ingredient.id !== ingr.id)
+
+        if (ingredientsFilteredArray.length === 0) {
+            setIsAdded(false);
+        }
+        setIngredients(ingredientsFilteredArray)
+
     }
 
     return (
         <div className={classes.ingredientsSection}>
 
             <div>
-                <h4>Добавленные ингредиенты</h4>
+                {isAdded && <h4>Added ingredients</h4>}
 
                 {ingredients.map(ingredient =>
                     (
-                        <div className={classes.ingredientRow}>
-                         {ingredient.id} {ingredient.name} {ingredient.amount} {ingredient.startUnit}
+                        <div className={classes.ingredientRow} key={ingredient.id}>
+                         {ingredient.id} {ingredient.ingredientName} {ingredient.amount} {ingredient.startUnit}
                         <Button onClick={() => deleteIngredient(ingredient)}>Delete</Button>
                         </div>
                     ))
@@ -70,11 +80,11 @@ const IngredientFormComponent = ({options, onChange, recipeTitle}) => {
 
 
             <InputComponent type={"text"}
-                            value={ingredient.name}
+                            value={ingredient.ingredientName}
                             placeholder="Ingredient name"
                             onChange={(event) => setIngredient({
                 ...ingredient,
-                name: event.target.value
+                                ingredientName: event.target.value
             })} />
 
             <InputComponent type={"number"}
@@ -85,20 +95,30 @@ const IngredientFormComponent = ({options, onChange, recipeTitle}) => {
                 amount: event.target.value
             })} />
 
-            <InputComponent type={"text"}
+            {/*<InputComponent type={"text"}
                             value={ingredient.category}
                             placeholder="Category"
                             onChange={(event) => setIngredient({
                                 ...ingredient,
                                 category: event.target.value
-                            })} />
+                            })} />*/}
+
+            <SelectComponent options={categories}
+                             defaultValue={"Choose a category"}
+                             value={ingredient.categoryName}
+                             onChange={(event) => setIngredient({
+                                 ...ingredient,
+                                 categoryName: event.target.value
+                             })} />
+
 
             <SelectComponent options={options}
                              defaultValue={"Choose a unit"}
                              value={ingredient.startUnit}
-                             onChange={(event) => setIngredient({...ingredient, unit: event.target.value})}/>
+                             onChange={(event) => setIngredient({...ingredient, startUnit: event.target.value})}/>
 
-            <Button onClick={addIngredient}>Add ingredient</Button>
+
+            <Button onClick={(e) => addIngredient(e)}>Add ingredient</Button>
         </div>
         )
 }

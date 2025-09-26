@@ -4,7 +4,7 @@ import IngredientFormComponent from "./IngredientFormComponent";
 import classes from "./FormStyle.module.css"
 import Button from "../Button/Button";
 
-const RecipeFormComponent = ({saveRecipe}) => {
+const RecipeFormComponent = ({saveRecipe, categories, initialRecipe}) => {
     const [recipe, setRecipe] = useState({
         title: '',
         shortDescription: '',
@@ -43,13 +43,19 @@ const RecipeFormComponent = ({saveRecipe}) => {
                         value: "kg"
                     }
                     ]}
-                    onChange={(ingredientsArray) => setRecipe({...recipe, ingredients: ingredientsArray})}
+                    onChange={(ingredientsArray) => {
+                        ingredientsArray.map(ingredient => ingredient.recipeName = recipe.title)
+                        setRecipe({...recipe, ingredients: ingredientsArray})}
+                    }
+                    categories={categories}
                     recipeTitle={recipe.title}/>
 
 
                 <Button onClick={(e) => {
                     e.preventDefault();
-                    saveRecipe(recipe)}
+                    saveRecipe(recipe)
+                    console.log(recipe)
+                }
                 }>Save</Button>
             </form>
         </div>

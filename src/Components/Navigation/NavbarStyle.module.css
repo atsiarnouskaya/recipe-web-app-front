@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: #fafafa;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.link {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.link:hover {
+    color: #8B0000;
+}

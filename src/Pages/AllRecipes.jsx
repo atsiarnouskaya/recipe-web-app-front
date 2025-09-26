@@ -2,6 +2,7 @@ import classes from "../Components/AllRecipes/AllRecipesStyle.module.css";
 import React, {useEffect, useState} from "react";
 import useFetching from "../hooks/useFetching";
 import RecipeService from "../API/RecipeService";
+import AllRecipesComponent from "../Components/AllRecipes/AllRecipesComponent";
 
 const AllRecipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -19,19 +20,8 @@ const AllRecipes = () => {
     if (isLoading) return <h3>Loading...</h3>;
 
     return (
-        <div>
-            <h2>All recipes</h2>
-            <br></br>
-            {recipes.map((recipe) => (
-                <div key={recipe.id} className={classes.wrapper}>
-                    <h2 className={classes.h2}>{recipe.title}</h2>
+        <AllRecipesComponent recipes={recipes} />
 
-                    <p>{`Short description ${recipe.shortDescription}`}</p>
-
-                    <p>{`Instructions: ${recipe.steps}`}</p>
-                </div>
-            ))}
-        </div>
     )
 }
 
