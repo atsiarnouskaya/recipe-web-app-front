@@ -1,16 +1,25 @@
-import React, {useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import InputComponent from "../Input/InputComponent";
 import IngredientFormComponent from "./IngredientFormComponent";
 import classes from "./FormStyle.module.css"
 import Button from "../Button/Button";
+import {RecipeContext} from "../../API/Context";
 
-const RecipeFormComponent = ({saveRecipe, categories, initialRecipe}) => {
-    const [recipe, setRecipe] = useState({
+const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
+    const [recipe, setRecipe] = useState(
+        initialRecipe || {
         title: '',
         shortDescription: '',
         steps: '',
-        ingredients: '',
+        ingredients: [],
     });
+
+    useEffect(() => {
+        if (initialRecipe) {
+            setRecipe(initialRecipe);
+            console.log(initialRecipe);
+        }
+    }, [initialRecipe]);
 
     return (
         <div>
@@ -18,15 +27,18 @@ const RecipeFormComponent = ({saveRecipe, categories, initialRecipe}) => {
 
             <form className={classes.recipeForm}>
                 <InputComponent type="text"
+                                value={recipe.title}
                                 placeholder="Recipe title"
                                 onChange={(e) => setRecipe({...recipe, title: e.target.value})} />
 
                 <InputComponent type="text"
                                 placeholder="Description"
+                                value={recipe.shortDescription}
                                 onChange={(e) => setRecipe({...recipe, shortDescription: e.target.value})} />
 
                 <InputComponent type="text"
                                 placeholder="Steps"
+                                value={recipe.steps}
                                 onChange={(e) => setRecipe({...recipe, steps: e.target.value})} />
 
                 <IngredientFormComponent options={[
@@ -47,8 +59,8 @@ const RecipeFormComponent = ({saveRecipe, categories, initialRecipe}) => {
                         ingredientsArray.map(ingredient => ingredient.recipeName = recipe.title)
                         setRecipe({...recipe, ingredients: ingredientsArray})}
                     }
-                    categories={categories}
-                    recipeTitle={recipe.title}/>
+                    recipeTitle={recipe.title}
+                    initialIngredients={recipe.ingredients}/>
 
 
                 <Button onClick={(e) => {

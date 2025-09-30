@@ -36,4 +36,10 @@ export default class RecipeService extends React.Component {
 
         return response;
     }
+
+    static async updateRecipe(id, recipe) {
+        const response = await axios.put(`http://localhost:8080/custom/recipes/${id}`, recipe);
+
+        return response;
+    }
 }
