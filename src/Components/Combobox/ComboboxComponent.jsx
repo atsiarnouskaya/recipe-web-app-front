@@ -18,7 +18,8 @@ const ComboboxComponent = ({options, onChange, value, placeholder}) => {
                 onChange={e => {
                     onChange(e.target.value)
                 }}
-                onFocus={() => setOpen(true)}
+                onFocus={() => !value && setOpen(true)}
+
             />
             {open && (
                 <ul className={classes.list}>
