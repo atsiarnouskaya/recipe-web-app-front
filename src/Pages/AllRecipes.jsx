@@ -9,7 +9,6 @@ const AllRecipes = () => {
 
     const [fetchRecipes, isLoading, error] = useFetching(async () => {
         const response = await RecipeService.getRecipes()
-        console.log(response.data)
         setRecipes(response.data)
     })
 

@@ -5,5 +5,19 @@
     font-size: 14px;
     background-color: transparent;
     border: 1px solid burlywood;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+.myBtn:hover {
+    background-color: lightgoldenrodyellow;
+    color: saddlebrown;
+}
+
+.myBtn:disabled {
+    color: gray;
+    background-color: lightgray;
+    border-color: gray;
+    pointer-events: none;
+    opacity: 0.6;
 }
