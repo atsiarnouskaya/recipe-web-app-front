@@ -45,7 +45,7 @@ function App() {
                     isLoading
                 }}>
                 <BrowserRouter>
-                    <Navbar />
+                    {isAuth && <Navbar />}
                     <Routes>
                         <Route element={<AllRecipes/>}
                                path={"/allRecipes"}/>

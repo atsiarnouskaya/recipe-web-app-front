@@ -21,7 +21,11 @@ function RegisterPage() {
     }
 
     return (
-        <RegistrationFormComponent register={register} />
+        <div>
+
+            <RegistrationFormComponent register={register} />
+        </div>
+
     );
 }
 

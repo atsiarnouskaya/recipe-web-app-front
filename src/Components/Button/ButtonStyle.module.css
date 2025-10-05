@@ -1,12 +1,16 @@
 .myBtn {
+    box-sizing: border-box;
+    display: inline-block;
     padding: 5px 15px;
-    margin: 5px;
+    margin: 15px 5px;
+    width: 100%;
     color: saddlebrown;
     font-size: 14px;
     background-color: transparent;
     border: 1px solid burlywood;
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
 }
 
 .myBtn:hover {

@@ -25,7 +25,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
         <div>
             <h2>Enter your recipe here</h2>
 
-            <form className={classes.recipeForm}>
+            <form className={classes.form}>
                 <InputComponent type="text"
                                 value={recipe.title}
                                 placeholder="Recipe title"
