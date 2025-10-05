@@ -1,4 +1,4 @@
-import LoginFormComponent from "../Components/Form/LoginFormComponent";
+import LoginFormComponent from "../Components/Login/LoginFormComponent";
 import {useContext, useState} from "react";
 import {AuthContext} from "../API/Context";
 import AuthService from "../API/AuthService";
@@ -23,6 +23,7 @@ const LoginPage = () => {
         if (response.success) {
             console.log("Login success", response.data);
             setUser(response.data);
+            setError("");
             setIsAuth(true);
         }
         else {
@@ -31,7 +32,7 @@ const LoginPage = () => {
     }
 
     return (
-        <LoginFormComponent login={loginUser} />
+        <LoginFormComponent login={loginUser} error={error} />
     )
 }
 

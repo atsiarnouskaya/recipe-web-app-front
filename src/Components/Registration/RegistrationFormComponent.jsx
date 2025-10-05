@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import InputComponent from "../Input/InputComponent";
 import Button from "../Button/Button";
 import classes from "../Form/FormStyle.module.css"
+import {Link} from "react-router-dom";
 
 function RegistrationFormComponent({register}) {
 
@@ -40,8 +41,6 @@ function RegistrationFormComponent({register}) {
                     style={{borderColor: confirmPassword && password !== confirmPassword ? "red" : ""}}/>
 
 
-
-
                 <Button
                     onClick={(e) => {
                     e.preventDefault();
@@ -53,9 +52,16 @@ function RegistrationFormComponent({register}) {
                         return;
                     }
                     register(username, password)}}
-                    disabled={!(username && password)}>
+                    disabled={!(username && password && confirmPassword)}>
                     Register
                 </Button>
+
+                <Link to={"/login"}
+                      style={{fontSize:"15px",
+                              alignItems:"center",
+                              justifyContent:"center",
+                              display:"flex",
+                              textDecoration: "none"}}>If you already have an account, please log in</Link>
 
             </form>
         </div>

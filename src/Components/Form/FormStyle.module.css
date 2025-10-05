@@ -16,7 +16,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* центрирование по вертикали */
+    height: 100vh;
+}
+
+.errorMessage {
+    color: #d93025;
+    background-color: #fdecea;
+    border: 1px solid #f5c2c0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .ingredientsSection {
