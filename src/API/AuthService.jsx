@@ -9,7 +9,13 @@ export default class AuthService extends React.Component {
         try {
             const response = await axios.post(
                 "http://localhost:8080/signin",
-                { username, password });
+                {username, password},
+                {withCredentials: true,
+                    auth: {
+                        username: username,
+                        password: password
+                    }
+                });
 
             console.log("Login success", response.data);
             return {success: true};
@@ -22,12 +28,29 @@ export default class AuthService extends React.Component {
 
     static async register(username, password) {
         try {
-            const response = await axios.post("http://localhost:8080/signup", { username, password });
+            const response = await axios.post("http://localhost:8080/signup",
+                { username, password },
+                {withCredentials: true});
+
             console.log("Register success", response.data, response.status);
             return response;
         } catch (e) {
             console.error("Register error", e);
         }
+    }
+
+    static async logout() {
+        try {
+            const response = await axios.post("http://localhost:8080/logout");
+            console.log("Logout success", response);
+            return response;
+        } catch (e) {
+            console.error("Logout error", e);
+        }
+    }
+
+    createBasicAuthToken(username, password) {
+        return 'Basic ' + window.btoa(username + ":" + password)
     }
 
 }
