@@ -10,6 +10,7 @@ import {AuthContext, RecipeContext} from "./API/Context";
 import {useState, useEffect} from "react";
 import RegisterPage from "./Pages/RegisterPage";
 import RegistrationSuccess from "./Components/Registration/RegistrationSuccess";
+import AppRouterComponent from "./Components/AppRouter/AppRouterComponent";
 
 
 function App() {
@@ -46,29 +47,31 @@ function App() {
                 }}>
                 <BrowserRouter>
                     {isAuth && <Navbar />}
-                    <Routes>
-                        <Route element={<AllRecipes/>}
-                               path={"/allRecipes"}/>
 
-                        <Route element={<CreateRecipe />}
-                               path={"/createRecipe"}/>
+                    <AppRouterComponent />
+                    {/*<Routes>*/}
+                    {/*    <Route element={<AllRecipes/>}*/}
+                    {/*           path={"/allRecipes"}/>*/}
 
-                        <Route element={<RecipeById />}
-                               path={"/recipe/:id"}/>
+                    {/*    <Route element={<CreateRecipe />}*/}
+                    {/*           path={"/createRecipe"}/>*/}
 
-                        <Route element={<EditRecipe />}
-                               path={"recipes/:id/edit"}/>
+                    {/*    <Route element={<RecipeById />}*/}
+                    {/*           path={"/recipe/:id"}/>*/}
 
-                        <Route element={<LoginPage />}
-                                path={"/login"}/>
+                    {/*    <Route element={<EditRecipe />}*/}
+                    {/*           path={"recipes/:id/edit"}/>*/}
 
-                        <Route element={<RegisterPage />}
-                               path={"/register"} />
+                    {/*    <Route element={<LoginPage />}*/}
+                    {/*            path={"/login"}/>*/}
 
-                        <Route element={<RegistrationSuccess />}
-                               path={"/register-success"}/>
+                    {/*    <Route element={<RegisterPage />}*/}
+                    {/*           path={"/register"} />*/}
 
-                    </Routes>
+                    {/*    <Route element={<RegistrationSuccess />}*/}
+                    {/*           path={"/register-success"}/>*/}
+
+                    {/*</Routes>*/}
                 </BrowserRouter>
                 </AuthContext.Provider>
             </RecipeContext.Provider>
