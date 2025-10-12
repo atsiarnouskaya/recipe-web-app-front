@@ -1,27 +1,31 @@
 .myBtn {
-    box-sizing: border-box;
-    display: inline-block;
-    padding: 5px 15px;
-    margin: 15px 5px;
+    display: block;
     width: 100%;
-    color: saddlebrown;
-    font-size: 14px;
-    background-color: transparent;
-    border: 1px solid burlywood;
-    border-radius: 5px;
+    padding: 0.4rem 0.8rem;
+    margin: 0.3rem 0;
+    background-color: #8B0000;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
-    position: relative;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+.myBtn:hover {
+    background-color: #a30000;
+    transform: translateY(-1px);
 }
 
-.myBtn:hover {
-    background-color: lightgoldenrodyellow;
-    color: saddlebrown;
+.myBtn:active {
+    background-color: #660000;
+    transform: translateY(0);
 }
 
 .myBtn:disabled {
-    color: gray;
-    background-color: lightgray;
-    border-color: gray;
+    color: white;
+    background-color: gray;
     pointer-events: none;
     opacity: 0.6;
 }

@@ -32,7 +32,7 @@ export default class RecipeService extends React.Component {
     }
 
     static async deleteRecipe(id) {
-        const response = await axios.put(`http://localhost:8080/custom/deleteRecipe/${id}`,
+        const response = await axios.put(`http://localhost:8080/custom/deleteRecipe/${id}`, {},
             {withCredentials: true});
 
         return response;

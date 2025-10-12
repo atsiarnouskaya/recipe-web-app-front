@@ -1,6 +1,6 @@
 .navbar {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 1.5rem;
     padding: 1rem 2rem;
@@ -19,4 +19,28 @@
 
 .link:hover {
     color: #8B0000;
+}
+
+.navbarBtn {
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    background-color: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbarBtn:hover {
+    background-color: #a30000;
+    transform: translateY(-1px);
+}
+
+.navbarBtn:active {
+    background-color: #660000;
+    transform: translateY(0);
 }

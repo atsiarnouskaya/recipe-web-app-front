@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import SelectComponent from "../Select/SelectComponent";
 import InputComponent from "../Input/InputComponent";
-import classes from "./FormStyle.module.css"
+import classes from "./FormStyle.module.css";
+import btn from "../AllRecipes/AllRecipesStyle.module.css";
 import Button from "../Button/Button";
 import {RecipeContext} from "../../API/Context";
 import ComboboxComponent from "../Combobox/ComboboxComponent";
@@ -97,7 +98,7 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
                     (
                         <div className={classes.ingredientRow} key={ingredient.id}>
                          {ingredient.id} {ingredient.ingredientName} {ingredient.amount} {ingredient.startUnit}
-                        <Button onClick={() => deleteIngredient(ingredient)}>Delete</Button>
+                        <Button className={btn.cardButton} onClick={() => deleteIngredient(ingredient)}>Delete</Button>
                         </div>
                     ))
                 }
@@ -139,7 +140,7 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
 
 
 
-            <Button onClick={(e) => addIngredient(e)}>Add ingredient</Button>
+            <Button  onClick={(e) => addIngredient(e)}>Add ingredient</Button>
         </div>
         )
 }

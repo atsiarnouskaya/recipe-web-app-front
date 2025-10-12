@@ -12,7 +12,7 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const logout = async () => {
-        const response = await AuthService.logout();
+        await AuthService.logout();
         setIsAuth(false)
         setUser(null)
         navigate("/login")
@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className={classes.navbar}>
             <Link className={classes.link} to={"/allRecipes"}>All recipes</Link>
             <Link className={classes.link} to={"/createRecipe"}>Create Recipe</Link>
-            <Button onClick={() => logout()}>Logout</Button>
+            <Button className={classes.navbarBtn} onClick={() => logout()}>Logout</Button>
 
         </div>
     )
