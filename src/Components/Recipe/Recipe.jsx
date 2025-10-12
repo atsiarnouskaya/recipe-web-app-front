@@ -12,7 +12,7 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
             <div key={recipe.id} className={classes.wrapper}>
                 <h2 className={classes.h2}>{recipe.title}</h2>
 
-                <p>{`Short description ${recipe.shortDescription}`}</p>
+                <p>{`${recipe.shortDescription}`}</p>
 
 
                 <p>{`Ingredients: ${recipe.ingredients.map(ingr => ingr.ingredientName).join(", ")}`}</p>

@@ -9,13 +9,13 @@ const AllRecipesComponent = ({recipes}) => {
 
     return (
         <div >
-            <h2>All recipes</h2>
+            <h1 className={classes.h1}>All recipes</h1>
             <br></br>
             {recipes.map((recipe) => (
                 <div key={recipe.id} className={classes.wrapper}>
                     <h2 className={classes.h2}>{recipe.title}</h2>
 
-                    <p>{`Short description ${recipe.shortDescription}`}</p>
+                    <p>{`${recipe.shortDescription}`}</p>
                     <div className={classes.buttonRow}>
                         <Button className={classes.cardButton} onClick={() => router(`/recipe/${recipe.id}`)} >More</Button>
                     </div>

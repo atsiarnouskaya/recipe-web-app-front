@@ -23,9 +23,12 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
 
     return (
         <div>
-            <h2>Enter your recipe here</h2>
+
 
             <form className={classes.form}>
+
+                <h2 className={classes.h2}>Enter your recipe here</h2>
+
                 <InputComponent type="text"
                                 value={recipe.title}
                                 placeholder="Recipe title"
@@ -36,23 +39,27 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                                 value={recipe.shortDescription}
                                 onChange={(e) => setRecipe({...recipe, shortDescription: e.target.value})} />
 
-                <InputComponent type="text"
-                                placeholder="Steps"
-                                value={recipe.steps}
-                                onChange={(e) => setRecipe({...recipe, steps: e.target.value})} />
+                <textarea className={classes.textarea}
+                          placeholder="Steps"
+                          value={recipe.steps}
+                          onChange={(e) => setRecipe({...recipe, steps: e.target.value})} />
 
                 <IngredientFormComponent options={[
-                    {
-                        name: "ml",
-                        value: "ml"
-                    },
                     {
                         name: "l",
                         value: "l"
                     },
                     {
+                        name: "ml",
+                        value: "ml"
+                    },
+                    {
                         name: "kg",
                         value: "kg"
+                    },
+                    {
+                        name: "g",
+                        value: "g"
                     }
                     ]}
                     onChange={(ingredientsArray) => {

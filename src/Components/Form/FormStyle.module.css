@@ -40,10 +40,42 @@
 }
 
 .ingredientRow {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.5fr;
     align-items: center;
-    gap: 0.8rem;
-    border-bottom: 1px solid #e0c2c2;
-    padding: 0.3rem 0;
+    gap: 8px;
+    width: 100%;
+}
+
+.ingredientName {
+    text-align: left;
+}
+
+.amount {
+    text-align: right;
+}
+
+.unit {
+    text-align: right;
+}
+
+
+.h2 {
+    margin: 0;
+    align-content: center;
+    font-size: 1.2rem;
+    color: #660000;
+}
+
+.textarea {
+    box-sizing: border-box;
+    width: 100%;
+    resize: vertical;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin: 0.2rem 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: sans-serif;
 }

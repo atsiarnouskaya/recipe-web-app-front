@@ -61,7 +61,6 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
         setIngredients([...ingredients, newIngredient])
 
         onChange([...ingredients, newIngredient])
-        console.log(ingredients)
 
         setIngredient({
             id:"",
@@ -97,7 +96,9 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
                 {ingredients.map(ingredient =>
                     (
                         <div className={classes.ingredientRow} key={ingredient.id}>
-                         {ingredient.id} {ingredient.ingredientName} {ingredient.amount} {ingredient.startUnit}
+                            <span className={classes.ingredientName}>{ingredient.ingredientName}</span>
+                            <span className={classes.amount}>{ingredient.amount}</span>
+                            <span className={classes.unit}>{ingredient.startUnit}</span>
                         <Button className={btn.cardButton} onClick={() => deleteIngredient(ingredient)}>Delete</Button>
                         </div>
                     ))

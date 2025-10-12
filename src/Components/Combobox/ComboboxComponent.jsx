@@ -7,6 +7,7 @@ const ComboboxComponent = ({options, onChange, value, placeholder}) => {
     const handleChange = (val) => {
         onChange(val)
         setOpen(false)
+        onChange(val)
     }
 
     return (
@@ -16,7 +17,8 @@ const ComboboxComponent = ({options, onChange, value, placeholder}) => {
                 className={classes.input}
                 value={value}
                 onChange={e => {
-                    onChange(e.target.value)
+                    handleChange(e.target.value)
+
                 }}
                 onFocus={() => !value && setOpen(true)}
 
