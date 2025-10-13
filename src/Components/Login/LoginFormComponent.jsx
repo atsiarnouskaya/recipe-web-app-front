@@ -13,7 +13,7 @@ const LoginFormComponent = ({login, error}) => {
     return (
         <div className={classes.centerWrapper}>
         <form className={classes.form}>
-            <h2>Enter your username and password to log in</h2>
+            <h2 className={classes.h2}>Enter your username and password to log in</h2>
 
             <InputComponent
                 type="text"

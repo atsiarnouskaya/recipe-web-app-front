@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import InputComponent from "../Input/InputComponent";
 import Button from "../Button/Button";
 import classes from "../Form/FormStyle.module.css"
@@ -13,7 +13,7 @@ function RegistrationFormComponent({register}) {
     return (
         <div className={classes.centerWrapper}>
             <form className={classes.form}>
-                <h2>Please enter your username and password to sign up</h2>
+                <h2 className={classes.h2}>Please enter your username and password to sign up</h2>
 
                 <InputComponent
                     type="text"

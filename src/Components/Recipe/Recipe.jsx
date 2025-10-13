@@ -1,7 +1,9 @@
 import React, {useState} from "react";
-import classes from "../AllRecipes/AllRecipesStyle.module.css";
+import classes from "./Recipe.module.css";
 import Button from "../Button/Button";
 import {useNavigate} from "react-router-dom";
+import IngredientsBlockComponent from "./IngredientsBlockComponent";
+import InstructionsBlockComponent from "./InstructionsBlockComponent";
 
 const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
 
@@ -9,20 +11,19 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
 
     return (
         <div>
-            <div key={recipe.id} className={classes.wrapper}>
-                <h2 className={classes.h2}>{recipe.title}</h2>
+            <div key={recipe.id} className={classes.recipeCard}>
+                <h2 className={classes.recipeTitle}>{recipe.title}</h2>
 
-                <p>{`${recipe.shortDescription}`}</p>
+                <p className={classes.description}>{`${recipe.shortDescription}`}</p>
 
+                <IngredientsBlockComponent ingredients={recipe.ingredients} />
 
-                <p>{`Ingredients: ${recipe.ingredients.map(ingr => ingr.ingredientName).join(", ")}`}</p>
-
-                <p>{`Instructions: ${recipe.steps}`}</p>
+                <InstructionsBlockComponent instructions={recipe.steps} />
             </div>
 
-            <div className={classes.buttonRow}>
-                <Button className={classes.cardButton} onClick={() => deleteRecipe(recipe)}>Delete</Button>
-                <Button className={classes.cardButton} onClick={() => router(`/recipes/${recipe.id}/edit`)}>Edit</Button>
+            <div className={classes.actions}>
+                <Button className={classes.button} onClick={() => deleteRecipe(recipe)}>Delete</Button>
+                <Button className={classes.button} onClick={() => router(`/recipes/${recipe.id}/edit`)}>Edit</Button>
             </div>
         </div>
     )
