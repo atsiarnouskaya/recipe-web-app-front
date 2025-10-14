@@ -1,9 +1,8 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import InputComponent from "../Input/InputComponent";
 import IngredientFormComponent from "./IngredientFormComponent";
 import classes from "./FormStyle.module.css"
 import Button from "../Button/Button";
-import {RecipeContext} from "../../API/Context";
 
 const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
     const [recipe, setRecipe] = useState(
@@ -70,11 +69,13 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                     initialIngredients={recipe.ingredients}/>
 
 
-                <Button onClick={(e) => {
+                <Button
+                    disabled = {! (recipe.title && recipe.ingredients.length > 0 && recipe.steps && recipe.shortDescription)}
+                    onClick={(e) => {
                     e.preventDefault();
                     saveRecipe(recipe)
                     console.log(recipe)
-                }
+                    }
                 }>Save</Button>
             </form>
         </div>

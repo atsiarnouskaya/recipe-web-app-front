@@ -141,7 +141,7 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
 
 
 
-            <Button  onClick={(e) => addIngredient(e)}>Add ingredient</Button>
+            <Button disabled={!(ingredient.categoryName && ingredient.startUnit && ingredient.amount && ingredient.ingredientName)} onClick={(e) => addIngredient(e)}>Add ingredient</Button>
         </div>
         )
 }
