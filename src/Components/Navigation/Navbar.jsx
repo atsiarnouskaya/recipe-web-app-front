@@ -15,13 +15,20 @@ const Navbar = () => {
         await AuthService.logout();
         setIsAuth(false)
         setUser(null)
+        localStorage.setItem("auth", "false");
+        localStorage.removeItem("user");
         navigate("/login")
+    }
+
+    if (!isAuth) {
+        return null;
     }
 
     return (
         <div className={classes.navbar}>
             <Link className={classes.link} to={"/allRecipes"}>All recipes</Link>
             <Link className={classes.link} to={"/createRecipe"}>Create Recipe</Link>
+            <Link className={classes.link} to={"/me"}>My Profile</Link>
             <Button className={classes.navbarBtn} onClick={() => logout()}>Logout</Button>
 
         </div>

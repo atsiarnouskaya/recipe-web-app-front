@@ -5,12 +5,14 @@ import EditRecipe from "../Components/Recipe/Editing/EditRecipe";
 import LoginPage from "../Pages/LoginPage";
 import RegisterPage from "../Pages/RegisterPage";
 import RegistrationSuccess from "../Components/Registration/RegistrationSuccess";
+import MyAccountPage from "../Pages/MyAccountPage";
 
 export const privateRoutes = [
     {path: '/allRecipes', component: <AllRecipes/>},
     {path: '/createRecipe', component: <CreateRecipe/>},
     {path: '/recipe/:id', component: <RecipeById />},
-    {path: 'recipes/:id/edit', component: <EditRecipe />}
+    {path: 'recipes/:id/edit', component: <EditRecipe />},
+    {path: '/me', component: <MyAccountPage />},
 ]
 
 export const publicRoutes = [

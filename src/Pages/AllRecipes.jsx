@@ -13,7 +13,7 @@ const AllRecipes = () => {
     })
 
     useEffect(() => {
-        fetchRecipes();
+        fetchRecipes().then();
     }, []);
 
     if (isLoading) return <h3>Loading...</h3>;

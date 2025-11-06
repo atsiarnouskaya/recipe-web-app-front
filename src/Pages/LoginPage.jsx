@@ -21,10 +21,12 @@ const LoginPage = () => {
             AuthService.login(username, password)
 
         if (response.success) {
-            console.log("Login success", response.data);
-            setUser(response.data);
+            console.log("Login success", response.result);
+            setUser(response.result);
             setError("");
             setIsAuth(true);
+            localStorage.setItem('auth', 'true');
+            localStorage.setItem('user', JSON.stringify(response.result));
         }
         else {
             setError("Invalid username or password");

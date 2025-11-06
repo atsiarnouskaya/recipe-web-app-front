@@ -9,6 +9,18 @@ export default class RecipeService extends React.Component {
         return response;
     }
 
+    static async getUsersRecipes(userId) {
+        const response = await axios.get(`http://localhost:8080/custom/recipes/${userId}`,
+            {withCredentials: true})
+        return response;
+    }
+
+    static async getUserFavouriteRecipes(userId) {
+        const response = await axios.get(`http://localhost:8080/custom/${userId}/favRecipes`,
+            {withCredentials: true});
+        return response;
+    }
+
     static async getRecipe(id) {
         const response = await axios.get(`http://localhost:8080/custom/recipe/${id}`,
             {withCredentials: true});

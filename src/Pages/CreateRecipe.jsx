@@ -25,8 +25,8 @@ const CreateRecipePage = () => {
 
     })
 
-    const savingRecipe = (recipe) => {
-        saveRecipe(recipe)
+    const savingRecipe = async (recipe) => {
+        await saveRecipe(recipe)
     }
 
     useEffect(() =>

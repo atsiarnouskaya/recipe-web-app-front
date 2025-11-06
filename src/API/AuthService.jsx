@@ -13,7 +13,7 @@ export default class AuthService extends React.Component {
                 {withCredentials: true});
 
             console.log("Login success", response.data);
-            return {success: true};
+            return {success: true, result: response.data};
 
         } catch (err) {
             console.error("Login error", err);

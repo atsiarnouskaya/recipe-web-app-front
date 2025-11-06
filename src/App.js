@@ -6,7 +6,7 @@ import Navbar from "./Components/Navigation/Navbar";
 import RecipeById from "./Pages/RecipeById"
 import EditRecipe from "./Components/Recipe/Editing/EditRecipe"
 import LoginPage from "./Pages/LoginPage"
-import {AuthContext, RecipeContext} from "./API/Context";
+import {AuthContext, AuthProvider, RecipeContext} from "./API/Context";
 import {useState, useEffect} from "react";
 import RegisterPage from "./Pages/RegisterPage";
 import RegistrationSuccess from "./Components/Registration/RegistrationSuccess";
@@ -38,42 +38,15 @@ function App() {
         <div className="App">
 
             <RecipeContext.Provider value={{categories, setCategories}}>
-                <AuthContext.Provider value={{
-                    isAuth,
-                    setIsAuth,
-                    user,
-                    setUser,
-                    isLoading
-                }}>
+                <AuthProvider>
                 <BrowserRouter>
-                    {isAuth && <Navbar />}
+
+                    <Navbar />
 
                     <AppRouterComponent />
-                    {/*<Routes>*/}
-                    {/*    <Route element={<AllRecipes/>}*/}
-                    {/*           path={"/allRecipes"}/>*/}
 
-                    {/*    <Route element={<CreateRecipe />}*/}
-                    {/*           path={"/createRecipe"}/>*/}
-
-                    {/*    <Route element={<RecipeById />}*/}
-                    {/*           path={"/recipe/:id"}/>*/}
-
-                    {/*    <Route element={<EditRecipe />}*/}
-                    {/*           path={"recipes/:id/edit"}/>*/}
-
-                    {/*    <Route element={<LoginPage />}*/}
-                    {/*            path={"/login"}/>*/}
-
-                    {/*    <Route element={<RegisterPage />}*/}
-                    {/*           path={"/register"} />*/}
-
-                    {/*    <Route element={<RegistrationSuccess />}*/}
-                    {/*           path={"/register-success"}/>*/}
-
-                    {/*</Routes>*/}
                 </BrowserRouter>
-                </AuthContext.Provider>
+                </AuthProvider>
             </RecipeContext.Provider>
 
         </div>

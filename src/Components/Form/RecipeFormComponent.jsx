@@ -3,6 +3,7 @@ import InputComponent from "../Input/InputComponent";
 import IngredientFormComponent from "./IngredientFormComponent";
 import classes from "./FormStyle.module.css"
 import Button from "../Button/Button";
+import {useNavigate} from "react-router-dom";
 
 const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
     const [recipe, setRecipe] = useState(
@@ -11,6 +12,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
         shortDescription: '',
         steps: '',
         ingredients: [],
+        videoURL:'',
     });
 
     useEffect(() => {
@@ -19,6 +21,8 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
             console.log(initialRecipe);
         }
     }, [initialRecipe]);
+
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -68,15 +72,30 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                     recipeTitle={recipe.title}
                     initialIngredients={recipe.ingredients}/>
 
+                <InputComponent
+                    type="url"
+                    value={recipe.videoURL}
+                    placeholder="Recipe video"
+                    onChange={(e) => setRecipe({...recipe, videoURL: e.target.value})}/>
+
+                {recipe.videoURL && (
+                    <iframe
+                        src={recipe.videoURL.replace("watch?v=", "embed/")}
+                        className="w-full h-480 rounded-lg"
+                        allowFullScreen
+                    />
+                )}
+
 
                 <Button
                     disabled = {! (recipe.title && recipe.ingredients.length > 0 && recipe.steps && recipe.shortDescription)}
                     onClick={(e) => {
                     e.preventDefault();
-                    saveRecipe(recipe)
-                    console.log(recipe)
+                    saveRecipe(recipe);
+                    navigate("/allRecipes");
                     }
-                }>Save</Button>
+                }
+                >Save</Button>
             </form>
         </div>
     )

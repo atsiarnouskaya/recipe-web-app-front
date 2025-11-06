@@ -19,6 +19,14 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
                 <IngredientsBlockComponent ingredients={recipe.ingredients} />
 
                 <InstructionsBlockComponent instructions={recipe.steps} />
+
+                {recipe.videoURL && (
+                    <iframe
+                        src={recipe.videoURL.replace("watch?v=", "embed/")}
+                        className="w-full h-480 rounded-lg"
+                        allowFullScreen
+                    />
+                )}
             </div>
 
             <div className={classes.actions}>
