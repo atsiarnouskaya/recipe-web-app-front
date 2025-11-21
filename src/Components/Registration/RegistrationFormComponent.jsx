@@ -9,6 +9,8 @@ function RegistrationFormComponent({register}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [userError, setUserError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
 
     return (
         <div className={classes.centerWrapper}>
@@ -19,17 +21,29 @@ function RegistrationFormComponent({register}) {
                     type="text"
                     value={username}
                     onChange={e => {
-                        setUsername (e.target.value);
+                        if (e.target.value.length > 50) {
+                            setUserError("Maximum length is 50 characters");
+                        } else {
+                            setUserError("")
+                            setUsername(e.target.value);
+                        }
                     }}
                     placeholder="Username" />
+                {userError && <span style={{color: "red"}}>{userError}</span>}
 
                 <InputComponent
                     type="password"
                     value={password}
                     onChange={e => {
-                        setPassword(e.target.value);
+                        if (e.target.value.length > 50) {
+                            setPasswordError("Maximum length is 50 characters");
+                        } else {
+                            setPasswordError("")
+                            setPassword(e.target.value);
+                        }
                     }}
                     placeholder="Password" />
+                {passwordError && <span style={{color: "red"}}>{passwordError}</span>}
 
                 <InputComponent
                     type="password"

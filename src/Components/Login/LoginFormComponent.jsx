@@ -8,6 +8,7 @@ const LoginFormComponent = ({login, error}) => {
 
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [userError, setUserError] = useState("");
 
 
     return (
@@ -19,9 +20,15 @@ const LoginFormComponent = ({login, error}) => {
                 type="text"
                 value={username}
                 onChange={e => {
-                    setUsername (e.target.value);
+                    if (e.target.value.length > 50) {
+                        setUserError("Maximum length is 50 characters");
+                    } else {
+                        setUserError("")
+                        setUsername(e.target.value);
+                    }
                 }}
                 placeholder="username" />
+            {userError && <span style={{color: "red"}}>{userError}</span>}
 
             <InputComponent
                 type="password"

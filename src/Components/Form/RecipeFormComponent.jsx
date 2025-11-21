@@ -15,6 +15,8 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
         videoURL:'',
     });
 
+    const [videoError, setVideoError] = useState("");
+
     useEffect(() => {
         if (initialRecipe) {
             setRecipe(initialRecipe);
@@ -23,6 +25,12 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
     }, [initialRecipe]);
 
     const navigate = useNavigate();
+
+    let isValid = false;
+    const isValidURL = (url) => {
+        const pattern = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9]{11}/;
+        return pattern.test(url);
+    }
 
     return (
         <div>
@@ -76,9 +84,18 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                     type="url"
                     value={recipe.videoURL}
                     placeholder="Recipe video"
-                    onChange={(e) => setRecipe({...recipe, videoURL: e.target.value})}/>
-
-                {recipe.videoURL && (
+                    style = {{borderColor: isValid ? "red":""}}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        if (value && !isValidURL(value)) {
+                            setVideoError("Enter a valid YouTube link");
+                        } else {
+                            setVideoError("");
+                        }
+                        setRecipe({...recipe, videoURL: value});
+                    }}/>
+                {videoError && <p style={{color: "red"}}>{videoError}</p>}
+                {!videoError && recipe.videoURL && (
                     <iframe
                         src={recipe.videoURL.replace("watch?v=", "embed/")}
                         className="w-full h-480 rounded-lg"
@@ -89,9 +106,9 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
 
                 <Button
                     disabled = {! (recipe.title && recipe.ingredients.length > 0 && recipe.steps && recipe.shortDescription)}
-                    onClick={(e) => {
+                    onClick={async (e) => {
                     e.preventDefault();
-                    saveRecipe(recipe);
+                    await saveRecipe(recipe);
                     navigate("/allRecipes");
                     }
                 }

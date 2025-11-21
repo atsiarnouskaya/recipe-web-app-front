@@ -11,10 +11,10 @@ const AccountInfoComponent = () => {
     }
 
     return (
-        <div>
-            <h2 className={classes.h2}>Hello, {user.username}!</h2>
-            <h3 className={classes.h3}>Here you can find your own recipes, edit them or delete,
-                and your favourite recipes.</h3>
+        <div className={classes.profileContainer}>
+            <h1 className={classes.profileHeader}>Hello, {user.username}!</h1>
+            <p className={classes.profileHeader}>Here you can find your own recipes, edit them or delete,
+                and your favourite recipes.</p>
         </div>
     )
 }

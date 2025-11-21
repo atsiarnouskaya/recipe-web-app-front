@@ -32,25 +32,22 @@
 
 
 .cardButton {
-    padding: 0.3rem 0.75rem;
-    background-color: #8B0000;
-    color: white;
+    background-color: #7b0000;
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 0.85rem;
-    font-weight: 500;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
     cursor: pointer;
-    width: fit-content;
-    margin: 0.5rem;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 .cardButton:hover {
     background-color: #a30000;
-    transform: translateY(-1px);
+    transform: scale(1.05);
 }
 
 .cardButton:active {
-    background-color: #660000;
-    transform: translateY(0);
+    background-color: #b30000;
+    box-shadow: 0 0 10px rgba(123, 0, 0, 0.3);
 }

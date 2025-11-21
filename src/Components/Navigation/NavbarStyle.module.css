@@ -22,25 +22,22 @@
 }
 
 .navbarBtn {
-    margin-left: auto;
-    padding: 0.5rem 1rem;
-    background-color: #8B0000;
-    color: white;
+    background-color: #7b0000;
+    color: #fff;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 500;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 .navbarBtn:hover {
     background-color: #a30000;
-    transform: translateY(-1px);
+    transform: scale(1.05);
 }
 
 .navbarBtn:active {
-    background-color: #660000;
-    transform: translateY(0);
+    background-color: #b30000;
+    box-shadow: 0 0 10px rgba(123, 0, 0, 0.3);
 }

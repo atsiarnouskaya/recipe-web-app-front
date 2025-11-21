@@ -3,14 +3,15 @@ import {AuthContext} from "../API/Context";
 import RecipeService from "../API/RecipeService";
 import AllRecipesComponent from "../Components/AllRecipes/AllRecipesComponent";
 import AccountInfoComponent from "../Components/AccountInfo/AccountInfoComponent";
+import Button from "../Components/Button/Button";
+import classes from "../Components/AccountInfo/AccountInfoStyle.module.css"
 
 const MyAccountPage = () => {
 
     const {isAuth, setIsAuth, user, setUser} = useContext(AuthContext);
-
     const [userRecipes, setUserRecipes] = useState([]);
-
     const [userFavouriteRecipes, setUserFavouriteRecipes] = useState([]);
+    const [activeTab, setActiveTab] = useState("my");
 
     const getUsersRecipes = async () => {
         const recipes = await RecipeService.getUsersRecipes(user.id);
@@ -38,8 +39,13 @@ const MyAccountPage = () => {
     return (
         <div>
             <AccountInfoComponent />
-            <AllRecipesComponent recipes={userRecipes} />
-            <AllRecipesComponent recipes={userFavouriteRecipes} />
+            <div className={classes.tabs}>
+                <Button className={classes.tabButton} onClick={() => {setActiveTab("my");}}>My recipes</Button>
+                <Button className={classes.tabButton} onClick={() => {setActiveTab("liked")}}>Liked recipes</Button>
+            </div>
+
+            {activeTab === "my" && <AllRecipesComponent recipes={userRecipes} title='Your recipes'/>}
+            {activeTab === "liked" && <AllRecipesComponent recipes={userFavouriteRecipes} title='Your Favourite Recipes'/>}
         </div>
 
     )

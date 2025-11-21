@@ -4,12 +4,12 @@ import Button from "../Button/Button";
 import {useNavigate} from "react-router-dom";
 
 
-const AllRecipesComponent = ({recipes}) => {
+const AllRecipesComponent = ({recipes, title}) => {
     const router = useNavigate()
 
     return (
         <div >
-            <h1 className={classes.h1}>All recipes</h1>
+            <h1 className={classes.h1}>{title}</h1>
             <br></br>
             {recipes.map((recipe) => (
                 <div key={recipe.id} className={classes.wrapper}>

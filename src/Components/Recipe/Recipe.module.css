@@ -72,16 +72,23 @@
 }
 
 .button {
-    background-color: #800;
+    background-color: #7b0000;
     color: #fff;
     border: none;
-    padding: 8px 14px;
     border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: background 0.2s ease;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 .button:hover {
-    background-color: #a11;
+    background-color: #a30000;
+    transform: scale(1.05);
 }
+
+.button.active {
+    background-color: #b30000;
+    box-shadow: 0 0 10px rgba(123, 0, 0, 0.3);
+}
+

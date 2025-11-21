@@ -1,13 +1,15 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import classes from "./Recipe.module.css";
 import Button from "../Button/Button";
 import {useNavigate} from "react-router-dom";
 import IngredientsBlockComponent from "./IngredientsBlockComponent";
 import InstructionsBlockComponent from "./InstructionsBlockComponent";
+import {AuthContext} from "../../API/Context";
 
 const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
 
     const router = useNavigate();
+    const {user} = useContext(AuthContext);
 
     return (
         <div>
@@ -29,10 +31,13 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
                 )}
             </div>
 
+            {recipe.username === user.username
+                &&
             <div className={classes.actions}>
                 <Button className={classes.button} onClick={() => deleteRecipe(recipe)}>Delete</Button>
                 <Button className={classes.button} onClick={() => router(`/recipes/${recipe.id}/edit`)}>Edit</Button>
             </div>
+            }
         </div>
     )
 }

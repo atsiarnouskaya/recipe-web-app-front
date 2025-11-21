@@ -39,9 +39,7 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
     );
 
     useEffect(() => {
-        console.log("Use effect")
         if (initialIngredients) {
-            console.log(initialIngredients);
             setIngredients(initialIngredients);
             setIsAdded(true);
         }
@@ -120,6 +118,7 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
             <InputComponent type={"number"}
                             value={ingredient.amount}
                             placeholder="Amount"
+                            style={{borderColor: ingredient.amount < 0 ? "red" : ""}}
                             onChange={(event) => setIngredient({
                 ...ingredient,
                 amount: event.target.value

@@ -14,7 +14,9 @@ const RecipeById = () => {
         title: "",
         shortDescription: "",
         steps: "",
-        ingredients: []
+        ingredients: [],
+        username:"",
+        userId:0
     });
 
 
@@ -37,13 +39,13 @@ const RecipeById = () => {
         const response = await RecipeService.editRecipe(id)
     })
 
-    const deleteRecipe = (recipe) => {
-        deleteRecipeFetching(recipe.id)
+    const deleteRecipe = async (recipe) => {
+        await deleteRecipeFetching(recipe.id)
         router("/allRecipes")
     }
 
     const editRecipe = async (recipe) => {
-        editRecipeFetching(recipe.id)
+        await editRecipeFetching(recipe.id)
     }
 
     if (loading) {
