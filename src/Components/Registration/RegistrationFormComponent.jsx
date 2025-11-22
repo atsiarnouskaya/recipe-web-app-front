@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import classes from "../Form/FormStyle.module.css"
 import {Link} from "react-router-dom";
 
-function RegistrationFormComponent({register}) {
+function RegistrationFormComponent({register, error}) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +29,7 @@ function RegistrationFormComponent({register}) {
                         }
                     }}
                     placeholder="Username" />
-                {userError && <span style={{color: "red"}}>{userError}</span>}
+                {userError && <span className={classes.errorMessage}>{userError}</span>}
 
                 <InputComponent
                     type="password"
@@ -43,7 +43,7 @@ function RegistrationFormComponent({register}) {
                         }
                     }}
                     placeholder="Password" />
-                {passwordError && <span style={{color: "red"}}>{passwordError}</span>}
+                {passwordError && <span className={classes.errorMessage}>{passwordError}</span>}
 
                 <InputComponent
                     type="password"
@@ -54,7 +54,7 @@ function RegistrationFormComponent({register}) {
                     placeholder="Confirm password"
                     style={{borderColor: confirmPassword && password !== confirmPassword ? "red" : ""}}/>
 
-
+                {error && (<span className={classes.errorMessage}>This user already exists</span>)}
                 <Button
                     onClick={(e) => {
                     e.preventDefault();

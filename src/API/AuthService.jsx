@@ -31,6 +31,9 @@ export default class AuthService extends React.Component {
             return response;
         } catch (e) {
             console.error("Register error", e);
+            if (e.response && e.response.status === 400) {
+                return e.response;
+            }
         }
     }
 
