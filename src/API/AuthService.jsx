@@ -8,7 +8,7 @@ export default class AuthService extends React.Component {
     static async login(username, password) {
         try {
             const response = await axios.post(
-                "http://localhost:8080/login",
+                "http://localhost:8080/signin",
                 {username, password},
                 {withCredentials: true});
 
