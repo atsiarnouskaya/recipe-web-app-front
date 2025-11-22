@@ -6,18 +6,18 @@ import {useNavigate} from "react-router-dom";
 function RegisterPage() {
 
     const navigate = useNavigate();
-    const [registrationError, setRegistrationError] = useState(false);
+    const [registrationError, setRegistrationError] = useState("");
     const register = async (username, password) => {
-        const response = await AuthService.register(username, password);
 
-        console.log(response);
         if (!username || !password) {
-            console.error("Both username or password must be entered.");
+            console.error("Username and password cannot be empty");
             return;
         }
 
+        const response = await AuthService.register(username, password);
+
         if (response.status === 400) {
-            setRegistrationError(true);
+            setRegistrationError(response.data.message);
         }
 
         if (response.status === 200 || response.status === 201) {

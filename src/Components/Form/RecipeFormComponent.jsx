@@ -4,6 +4,7 @@ import IngredientFormComponent from "./IngredientFormComponent";
 import classes from "./FormStyle.module.css"
 import Button from "../Button/Button";
 import {useNavigate} from "react-router-dom";
+import Validation from "../../Validation/Validation";
 
 const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
     const [recipe, setRecipe] = useState(
@@ -27,10 +28,6 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
     const navigate = useNavigate();
 
     let isValid = false;
-    const isValidURL = (url) => {
-        const pattern = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9]{11}/;
-        return pattern.test(url);
-    }
 
     return (
         <div>
@@ -86,13 +83,15 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                     placeholder="Recipe video"
                     style = {{borderColor: isValid ? "red":""}}
                     onChange={(e) => {
-                        const value = e.target.value;
-                        if (value && !isValidURL(value)) {
+                        const validUrl = Validation.youtubeURLValidation(e.target.value);
+
+                        if (!validUrl.error) {
+                            setRecipe({...recipe, videoURL: validUrl.url});
                             setVideoError("Enter a valid YouTube link");
                         } else {
+                            setRecipe({...recipe, videoURL: validUrl.url});
                             setVideoError("");
                         }
-                        setRecipe({...recipe, videoURL: value});
                     }}/>
                 {videoError && <p style={{color: "red"}}>{videoError}</p>}
                 {!videoError && recipe.videoURL && (

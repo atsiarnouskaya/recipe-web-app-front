@@ -3,13 +3,14 @@ import React, {useState} from "react";
 import Button from "../Button/Button";
 import classes from "../Form/FormStyle.module.css"
 import {Link} from "react-router-dom";
+import Validation from "../../Validation/Validation";
 
 const LoginFormComponent = ({login, error}) => {
 
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [userError, setUserError] = useState("");
-
+    const [passwordError, setPasswordError] = useState("");
 
     return (
         <div className={classes.centerWrapper}>
@@ -20,11 +21,15 @@ const LoginFormComponent = ({login, error}) => {
                 type="text"
                 value={username}
                 onChange={e => {
-                    if (e.target.value.length > 50) {
-                        setUserError("Maximum length is 50 characters");
-                    } else {
-                        setUserError("")
-                        setUsername(e.target.value);
+                    const usernameValidation = Validation.validateUsername(e.target.value);
+
+                    if (usernameValidation.error === "") {
+                        setUserError("");
+                        setUsername(usernameValidation.username);
+                    }
+                    else {
+                        setUserError(usernameValidation.error);
+                        setUsername(usernameValidation.username);
                     }
                 }}
                 placeholder="username" />
@@ -34,7 +39,15 @@ const LoginFormComponent = ({login, error}) => {
                 type="password"
                 value={password}
                 onChange={e => {
-                    setPassword(e.target.value);
+                    const passwordValidation = Validation.validatePassword(e.target.value);
+
+                    if (passwordValidation.error === "") {
+                        setPasswordError("")
+                        setPassword(passwordValidation.password);
+                    } else {
+                        setPasswordError(passwordValidation.error)
+                        setPassword(passwordValidation.password);
+                    }
                 }}
                 placeholder="password" />
 
