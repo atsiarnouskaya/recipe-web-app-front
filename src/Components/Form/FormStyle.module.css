@@ -11,6 +11,13 @@
     gap: 1rem;
 }
 
+.form iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    display: block;
+}
+
 .centerWrapper {
     display: flex;
     justify-content: center;

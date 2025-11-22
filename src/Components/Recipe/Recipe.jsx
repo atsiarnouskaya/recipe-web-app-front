@@ -25,9 +25,9 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
                 {recipe.videoURL && (
                     <iframe
                         src={recipe.videoURL.replace("watch?v=", "embed/")}
-                        className="w-full h-480 rounded-lg"
                         allowFullScreen
                     />
+
                 )}
             </div>
 
