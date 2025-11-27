@@ -3,6 +3,7 @@ export default class Validation {
     static spaceRegex = /\s+/g;
     static usernameRegex = /^[a-zA-Z0-9_-]*$/;
     static maxLength = 50;
+    static textFieldRegex = /^[a-zA-Z0-9,.()]*$/;
 
     static ytPattern = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/;
 
@@ -46,6 +47,17 @@ export default class Validation {
         const res = Validation.ytPattern.test(urlNoSpaces);
         console.log(res);
         return {error: res, url: urlNoSpaces};
+    }
+
+    static validateTextField(text, maxLength) {
+        const textNoSpaces = text.replace(Validation.spaceRegex, "");
+        if (textNoSpaces.length > maxLength) {
+            return {error: "Maximum length is " + maxLength + " characters", textField: textNoSpaces};
+        }
+        if (!Validation.textFieldRegex.test(textNoSpaces)) {
+            return {error: "Only letters, ',', '.', '()' are allowed", textField: textNoSpaces};
+        }
+        return {error: "", textField: textNoSpaces};
     }
 
 }

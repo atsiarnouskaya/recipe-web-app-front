@@ -17,6 +17,11 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
     });
 
     const [videoError, setVideoError] = useState("");
+    const [textFieldError, setTextFieldError] = useState({
+        title: "",
+        shortDescription: "",
+        steps: ""
+    });
 
     useEffect(() => {
         if (initialRecipe) {
@@ -40,17 +45,39 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                 <InputComponent type="text"
                                 value={recipe.title}
                                 placeholder="Recipe title"
-                                onChange={(e) => setRecipe({...recipe, title: e.target.value})} />
+                                onChange={(e) => {
+                                    const validateTitle = Validation.validateTextField(e.target.value, 50);
+                                        setTextFieldError({...textFieldError, title: validateTitle.error})
+                                        setRecipe({...recipe, title: validateTitle.textField});
+                                }
+                                }
+                                style={{borderColor: textFieldError.title ? "red" : ""}}/>
+                {textFieldError.title && (<span className={classes.errorMessage}>{textFieldError.title}</span>)}
 
                 <InputComponent type="text"
                                 placeholder="Description"
                                 value={recipe.shortDescription}
-                                onChange={(e) => setRecipe({...recipe, shortDescription: e.target.value})} />
+                                onChange={(e) =>
+                                {
+                                    const validateShortDescription = Validation.validateTextField(e.target.value, 200);
+                                        setTextFieldError({...textFieldError, shortDescription: validateShortDescription.error})
+                                        setRecipe({...recipe, shortDescription: validateShortDescription.textField});
+                                    }
+                                }
+                                style={{borderColor: textFieldError.shortDescription ? "red" : ""}}/>
+                {textFieldError.shortDescription && (<span className={classes.errorMessage}>{textFieldError.shortDescription}</span>)}
 
                 <textarea className={classes.textarea}
                           placeholder="Steps"
                           value={recipe.steps}
-                          onChange={(e) => setRecipe({...recipe, steps: e.target.value})} />
+                          onChange={(e) =>
+                          {
+                              const validateSteps = Validation.validateTextField(e.target.value, 2000);
+                              setTextFieldError({...textFieldError, steps: validateSteps.error})
+                              setRecipe({...recipe, steps: validateSteps.steps})}
+                          }
+                          style={{borderColor: textFieldError.steps ? "red" : ""}}/>
+                {textFieldError.steps && (<span className={classes.errorMessage}>{textFieldError.steps}</span>)}
 
                 <IngredientFormComponent options={[
                     {
@@ -104,7 +131,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
 
 
                 <Button
-                    disabled = {! (recipe.title && recipe.ingredients.length > 0 && recipe.steps && recipe.shortDescription)}
+                    disabled = {!(recipe.title && recipe.ingredients.length > 0 && recipe.steps && recipe.shortDescription)}
                     onClick={async (e) => {
                     e.preventDefault();
                     await saveRecipe(recipe);

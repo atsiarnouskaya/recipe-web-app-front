@@ -17,7 +17,8 @@ function RegisterPage() {
         const response = await AuthService.register(username, password);
 
         if (response.status === 400) {
-            setRegistrationError(response.data.message);
+            console.log(response);
+            setRegistrationError(response.data.username || response.data.password);
         }
 
         if (response.status === 200 || response.status === 201) {

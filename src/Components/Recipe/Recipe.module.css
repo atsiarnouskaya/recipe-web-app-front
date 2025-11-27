@@ -24,6 +24,12 @@
     padding-bottom: 6px;
 }
 
+.headerRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .section {
     margin-bottom: 20px;
 }
@@ -90,6 +96,30 @@
 .button.active {
     background-color: #b30000;
     box-shadow: 0 0 10px rgba(123, 0, 0, 0.3);
+}
+
+.likeBtn {
+    border: solid 1px lightcoral;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    color: #ccc;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.likeBtn::before {
+    content: "♡";
+}
+
+.likeBtn.liked::before {
+    content: "♥";
+    color: #ff4d6d;
+}
+
+.likeBtn:hover {
+    transform: scale(1.15);
 }
 
 .recipeCard iframe {

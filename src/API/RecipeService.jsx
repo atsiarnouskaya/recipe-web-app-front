@@ -56,4 +56,10 @@ export default class RecipeService extends React.Component {
 
         return response;
     }
+
+    static async likeRecipe(recipeId, mode) {
+        const response = await axios.put(`http://localhost:8080/custom/fav`, {recipeId:recipeId, isLiked:mode},
+            {withCredentials: true});
+        return response;
+    }
 }
