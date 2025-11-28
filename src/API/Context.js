@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
             setUser(JSON.parse(savedUser));
             setIsAuth(true);
         }
-    }, []);
+    }, [isAuth]);
 
     return (
         <AuthContext.Provider value={{ user, setUser, isAuth, setIsAuth }}>
