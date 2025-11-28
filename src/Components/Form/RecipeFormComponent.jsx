@@ -22,6 +22,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
         shortDescription: "",
         steps: ""
     });
+    const [savingError, setSavingError] = useState(false);
 
     useEffect(() => {
         if (initialRecipe) {
@@ -49,10 +50,11 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                                     const validateTitle = Validation.validateTextField(e.target.value, 50);
                                         setTextFieldError({...textFieldError, title: validateTitle.error})
                                         setRecipe({...recipe, title: validateTitle.textField});
+
                                 }
                                 }
                                 style={{borderColor: textFieldError.title ? "red" : ""}}/>
-                {textFieldError.title && (<span className={classes.errorMessage}>{textFieldError.title}</span>)}
+                                {textFieldError.title && (<span className={classes.errorMessage}>{textFieldError.title}</span>)}
 
                 <InputComponent type="text"
                                 placeholder="Description"
@@ -74,7 +76,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                           {
                               const validateSteps = Validation.validateTextField(e.target.value, 2000);
                               setTextFieldError({...textFieldError, steps: validateSteps.error})
-                              setRecipe({...recipe, steps: validateSteps.steps})}
+                              setRecipe({...recipe, steps: validateSteps.textField})}
                           }
                           style={{borderColor: textFieldError.steps ? "red" : ""}}/>
                 {textFieldError.steps && (<span className={classes.errorMessage}>{textFieldError.steps}</span>)}

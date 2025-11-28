@@ -1,9 +1,10 @@
 export default class Validation {
 
-    static spaceRegex = /\s+/g;
+    static spaceRegex = / {2,}/g;
     static usernameRegex = /^[a-zA-Z0-9_-]*$/;
     static maxLength = 50;
-    static textFieldRegex = /^[a-zA-Z0-9,.()]*$/;
+    static textFieldRegex = /^['’\-\\/–a-zA-Z0-9,.!?()“”\s]*$/;
+    static numberFieldRegex = /^[0-9]+(\.)?[0-9]*$/;
 
     static ytPattern = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/;
 
@@ -50,14 +51,25 @@ export default class Validation {
     }
 
     static validateTextField(text, maxLength) {
-        const textNoSpaces = text.replace(Validation.spaceRegex, "");
+        const textNoSpaces = text.replace(Validation.spaceRegex, " ");
         if (textNoSpaces.length > maxLength) {
             return {error: "Maximum length is " + maxLength + " characters", textField: textNoSpaces};
         }
         if (!Validation.textFieldRegex.test(textNoSpaces)) {
             return {error: "Only letters, ',', '.', '()' are allowed", textField: textNoSpaces};
         }
+        console.log("Before:", text, "After:", textNoSpaces);
         return {error: "", textField: textNoSpaces};
+    }
+
+    static validateNumberField(number) {
+        const numberNoSpaces = number.replace(Validation.spaceRegex, "");
+
+        if(!Validation.numberFieldRegex.test(number)) {
+            return {error: "Invalid number", numberField: numberNoSpaces};
+        }
+        return {error: "", numberField: numberNoSpaces}
+
     }
 
 }

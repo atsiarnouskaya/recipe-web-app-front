@@ -1,18 +1,17 @@
 import React from 'react';
-import Button from "../Button/Button";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
+import classes from "./RegistrationSuccess.module.css"
 
 function RegistrationSuccess() {
 
-    const navigate = useNavigate();
 
     return (
-        <div>
-            You have successfully registered!
-            <br></br>
+        <div className={classes.regSuccessContainer}>
+            <h2 className={classes.regSuccessTitle}>You have successfully registered!</h2>
 
-            <Link to={"/login"}>Login</Link>
-
+            <Link className={classes.regSuccessLink} to="/login">
+                Login
+            </Link>
         </div>
     );
 }

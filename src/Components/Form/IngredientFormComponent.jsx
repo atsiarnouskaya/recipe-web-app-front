@@ -8,6 +8,7 @@ import {RecipeContext} from "../../API/Context";
 import ComboboxComponent from "../Combobox/ComboboxComponent";
 import RecipeService from "../../API/RecipeService";
 import useFetching from "../../hooks/useFetching";
+import Validation from "../../Validation/Validation";
 
 const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredients}) => {
 
@@ -20,11 +21,15 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
         recipeName: recipeTitle,
         ingredientName: "",
         amount: "",
-        startUnit: "",
-        endUnit: "",
-        categoryName: "",
-        adjustingFactor: ""
+        unit: "",
+        categoryName: ""
     })
+
+    const [textFieldError, setTextFieldError] = useState({
+        ingredientName: "",
+        categoryName: "",
+        amount: ""
+    });
 
     const {categories, setCategories} = useContext(RecipeContext);
 
@@ -65,10 +70,8 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
             ingredientName: "",
             recipeName: "",
             amount: "",
-            startUnit:"",
-            endUnit:"",
-            categoryName: "",
-            adjustingFactor: ""
+            unit: "",
+            categoryName: ""
         })
 
         fetching();
@@ -96,7 +99,7 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
                         <div className={classes.ingredientRow} key={ingredient.id}>
                             <span className={classes.ingredientName}>{ingredient.ingredientName}</span>
                             <span className={classes.amount}>{ingredient.amount}</span>
-                            <span className={classes.unit}>{ingredient.startUnit}</span>
+                            <span className={classes.unit}>{ingredient.unit}</span>
                         <Button className={btn.cardButton} onClick={() => deleteIngredient(ingredient)}>Delete</Button>
                         </div>
                     ))
@@ -105,42 +108,46 @@ const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredi
 
             </div>
 
-
-
             <InputComponent type={"text"}
                             value={ingredient.ingredientName}
                             placeholder="Ingredient name"
-                            onChange={(event) => setIngredient({
-                ...ingredient,
-                                ingredientName: event.target.value
-            })} />
+                            onChange={(event) => {
+                                const validateIngredientName = Validation.validateTextField(event.target.value);
+                                setIngredient({...ingredient, ingredientName: validateIngredientName.textField})
+                                setTextFieldError({...textFieldError, ingredientName: validateIngredientName.error})}}
+                            style={{borderColor: textFieldError.ingredientName ? "red" : ""}}/>
 
-            <InputComponent type={"number"}
-                            value={ingredient.amount}
-                            placeholder="Amount"
-                            style={{borderColor: ingredient.amount < 0 ? "red" : ""}}
-                            onChange={(event) => setIngredient({
-                ...ingredient,
-                amount: event.target.value
-            })} />
+            {textFieldError.ingredientName && (<span className={classes.errorMessage}>{textFieldError.ingredientName}</span>)}
 
             <ComboboxComponent options={categories}
                                placeholder={"Category"}
                                value={ingredient.categoryName}
-                               onChange={(val) => setIngredient({
-                                   ...ingredient,
-                                   categoryName: val
-                               })}/>
+                               onChange={(event) => {
+                                   const validateCategory = Validation.validateTextField(event);
+                                   setIngredient({...ingredient, categoryName: validateCategory.textField})
+                                   setTextFieldError({...textFieldError, categoryName: validateCategory.error})}}
+                               style={{borderColor: textFieldError.categoryName ? "red" : ""}}/>
+
+            {textFieldError.categoryName && (<span className={classes.errorMessage}>{textFieldError.categoryName}</span>)}
+
+            <InputComponent type={"number"}
+                            value={ingredient.amount}
+                            placeholder="Amount"
+                            onChange={(event) => {
+                                const validateAmount = Validation.validateNumberField(event.target.value);
+                                setIngredient({...ingredient, amount: validateAmount.numberField})
+                                setTextFieldError({...textFieldError, amount: validateAmount.error})}}
+                            style={{borderColor: textFieldError.amount ? "red" : ""}}/>
+            {textFieldError.amount && (<span className={classes.errorMessage}>{textFieldError.amount}</span>)}
+
 
             <SelectComponent options={options}
                              defaultValue={"Choose a unit"}
-                             value={ingredient.startUnit}
-                             onChange={(event) => setIngredient({...ingredient, startUnit: event.target.value})}/>
+                             value={ingredient.unit}
+                             onChange={(event) => setIngredient({...ingredient, unit: event.target.value})}/>
 
 
-
-
-            <Button disabled={!(ingredient.categoryName && ingredient.startUnit && ingredient.amount && ingredient.ingredientName)} onClick={(e) => addIngredient(e)}>Add ingredient</Button>
+            <Button disabled={!(ingredient.categoryName && ingredient.unit && ingredient.amount && ingredient.ingredientName)} onClick={(e) => addIngredient(e)}>Add ingredient</Button>
         </div>
         )
 }

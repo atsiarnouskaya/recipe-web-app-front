@@ -35,6 +35,10 @@ const CreateRecipePage = () => {
     if (isSaving) {
         return <h3>Saving...</h3>
     }
+    if (recipeSavingError) {
+        alert("Saving failed.")
+    }
+
     return (
         <RecipeFormComponent saveRecipe={savingRecipe} categories={categories} />
     )
