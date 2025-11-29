@@ -1,70 +1,146 @@
-# Getting Started with Create React App
+# Recipe web-application frontend (wersja po polsku)
+To jest frontend mojego pet-projectu — aplikacji webowej z przepisami.
+Oferuje m.in.:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Rejestrację i logowanie
 
-## Available Scripts
+- Dodawanie własnych przepisów poprzez formularz
 
-In the project directory, you can run:
+- Edytowanie i usuwanie wyłącznie swoich przepisów — jeśli nie jesteś autorem, nie masz takiej opcji
 
-### `npm start`
+- Lajkowanie i dislajkowanie przepisów
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Stronę konta z Twoimi dodanymi oraz polubionymi przepisami
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Endpoints
 
-### `npm test`
+#### Auth
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```http
+    POST /signup - rejestracja użytkownika ({username, password})
+    POST /signin - logowanie użytkownika ({username, password})
+    POST /logout - wylogowanie ({})
+```
 
-### `npm run build`
+#### Recipes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```http
+    GET /custom/recipes - pobranie wszystkich przepisów z bazy
+    GET /custom/recipe/${id} - pobranie przepisu o id == id
+    GET /custom/recipes/${userId} - pobranie przepisów użytkownika o id == userId
+    GET /categories - pobranie wszystkich kategorii z bazy
+    GET /custom/${userId}/favRecipes - pobranie ulubionych przepisów użytkownika o id == userId
+    POST /custom/addRecipe - dodanie nowego przepisu ({recipe object})
+    PUT /custom/deleteRecipe/${id} - miękkie usunięcie przepisu (zmiana flagi w bazie) o id == id
+    PUT /custom/recipes/${id} - aktualizacja przepisu o id == id
+    PUT /custom/fav - polubienie lub usunięcie polubienia przepisu ({recipeId, mode (like or dislike)})
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Uruchamianie lokalnie
 
-### `npm run eject`
+Zanim odpalisz projekt, upewnij się, że backend oraz baza danych są już postawione i działają.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Sklonuj repo
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+  git clone https://github.com/atsiarnouskaya/recipe-web-app-front.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Wejdź do katalogu projektu
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+  cd recipe-web-app-front
+```
 
-## Learn More
+Zainstaluj zależności
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  npm install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Odpal lokalny serwer
 
-### Code Splitting
+```bash
+  npm run start
+```
+Wejdź na http://localhost:3000, żeby zobaczyć aplikację w przeglądarce.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Autor
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [@atsiarnouskaya](https://github.com/atsiarnouskaya)
 
-### Making a Progressive Web App
+# Recipe web-application frontend (in English)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This is a frontend part of my pet-project Recipe web-application. It provides with functionalities as:
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+- Signing up and signing in
+- Adding your own recipes using a form
+- Editing or deleting only your own recipes! If you are not the authoer you won't be able to delete a recipe
+- Liking and disliking
+- Your account page with recipes you have added and liked
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Endpoints
+
+#### Auth
+
+```http
+    POST /signup - signing up ({username, password})
+    POST /signin - signing in ({username, password})
+    POST /logout - loging out ({})
+```
+
+#### Recipes
+
+```http
+    GET /custom/recipes - get all recipes from a db
+    GET /custom/recipe/${id} - get recipe with id == id
+    GET /custom/recipes/${userId} - get users with id == userId recipes
+    GET /categories - get all categories from a db
+    GET /custom/${userId}/favRecipes - get users with id == userId favourite recipes
+    POST /custom/addRecipe - add a new recipe ({recipe object})
+    PUT /custom/deleteRecipe/${id} - soft delete (change a flag in a db) of recipe with id == id
+    PUT /custom/recipes/${id} - updating a recipe with id == id
+    PUT /custom/fav - liking or disliking a recipe ({recipeId, mode (like or dislike)})
+```
+
+## Run Locally
+
+Before running this project please ensure you have backend part and a db running
+
+Clone the project
+
+```bash
+  git clone https://github.com/atsiarnouskaya/recipe-web-app-front.git
+```
+
+Go to the project directory
+
+```bash
+  cd recipe-web-app-front
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+Open http://localhost:3000 to view it in your browser.
+
+
+## Author
+
+- [@atsiarnouskaya](https://github.com/atsiarnouskaya)
+
