@@ -39,7 +39,11 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
         <div>
 
 
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={async (e) => {
+                e.preventDefault();
+                await saveRecipe(recipe);
+                navigate("/allRecipes");
+            }}>
 
                 <h2 className={classes.h2}>Enter your recipe here</h2>
 
@@ -133,13 +137,8 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
 
 
                 <Button
+                    type="submit"
                     disabled = {!(recipe.title && recipe.ingredients.length > 0 && recipe.steps && recipe.shortDescription)}
-                    onClick={async (e) => {
-                    e.preventDefault();
-                    await saveRecipe(recipe);
-                    navigate("/allRecipes");
-                    }
-                }
                 >Save</Button>
             </form>
         </div>

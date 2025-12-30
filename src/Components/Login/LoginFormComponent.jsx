@@ -14,7 +14,10 @@ const LoginFormComponent = ({login, error}) => {
 
     return (
         <div className={classes.centerWrapper}>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={(e) => {
+            e.preventDefault();
+            login(username, password);
+        }}>
             <h2 className={classes.h2}>Enter your username and password to log in</h2>
 
             <InputComponent
@@ -56,9 +59,8 @@ const LoginFormComponent = ({login, error}) => {
 
 
 
-            <Button onClick={(e) => {
-                e.preventDefault();
-                login(username, password)}}
+            <Button
+                type="submit"
                 disabled={!(username && password)}>
                 Login</Button>
 

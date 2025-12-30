@@ -12,19 +12,17 @@ export default class AuthService extends React.Component {
                 {username, password},
                 {withCredentials: true});
 
-            console.log("Login success", response.data);
-            return {success: true, result: response.data};
+            return response;
 
         } catch (err) {
-            console.error("Login error", err);
-            return {success: false, message: err.message};
+            return err.response;
         }
     }
 
-    static async register(username, password) {
+    static async register(username, password, email) {
         try {
             const response = await axios.post("http://localhost:8080/signup",
-                { username, password },
+                { username, password, email},
                 {withCredentials: true});
 
             console.log("Register success", response.data, response.status);

@@ -5,6 +5,8 @@ export default class Validation {
     static maxLength = 50;
     static textFieldRegex = /^['’\-\\/–a-zA-Z0-9,.!?()“”\s]*$/;
     static numberFieldRegex = /^[0-9]+(\.)?[0-9]*$/;
+    static verifyEmailCodeRegex = /[0-9]{6}/;
+    static emailRegex = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,4}$/;
 
     static ytPattern = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/;
 
@@ -23,6 +25,20 @@ export default class Validation {
         }
     }
 
+    static validateEmail(email) {
+        const emailNoSpaces = email.replace(Validation.spaceRegex, "")
+
+        if(emailNoSpaces.length > Validation.maxLength) {
+            return {error: "Maximum length is 50 characters", email: emailNoSpaces};
+        } else {
+            if (Validation.emailRegex.test(emailNoSpaces)) {
+                return {error: "", email: emailNoSpaces};
+            } else {
+                return {error: "Email is incorrect. Please provide a correct one.", email: emailNoSpaces};
+            }
+        }
+    }
+
     static validatePassword(password) {
         const passwordNoSpaces = password.replace(Validation.spaceRegex, "")
         if(passwordNoSpaces.length > Validation.maxLength) {
@@ -31,17 +47,18 @@ export default class Validation {
         return {error: "", password: passwordNoSpaces};
     }
 
-    static confirmPasswordValidation(confirmPassword, password) {
-        const passwordNoSpaces = password.replace(Validation.spaceRegex, "")
-        const confirmPasswordNoSpaces = confirmPassword.replace(Validation.spaceRegex, "")
-        if(confirmPasswordNoSpaces.length > Validation.maxLength || passwordNoSpaces.length > Validation.maxLength) {
-            return {error: "Maximum length is 50 characters", password: confirmPasswordNoSpaces, confirmation: false};
-        }
-        if (confirmPasswordNoSpaces !== passwordNoSpaces) {
-            return {error: "Passwords do not match", password: confirmPasswordNoSpaces, confirmation: false};
-        }
-        return {error: "", password: confirmPasswordNoSpaces, confirmation: true};
-    }
+    // static validatePassword(confirmPassword, password) {
+    //     const passwordNoSpaces = password.replace(Validation.spaceRegex, "")
+    //     const confirmPasswordNoSpaces = confirmPassword.replace(Validation.spaceRegex, "")
+    //     if (passwordNoSpaces.length > Validation.maxLength) {}
+    //     if(confirmPasswordNoSpaces.length > Validation.maxLength || passwordNoSpaces.length > Validation.maxLength) {
+    //         return {error: "Maximum length is 50 characters", password: confirmPasswordNoSpaces, confirmation: false};
+    //     }
+    //     if (confirmPasswordNoSpaces !== passwordNoSpaces) {
+    //         return {error: "Passwords do not match", password: confirmPasswordNoSpaces, confirmation: false};
+    //     }
+    //     return {error: "", password: confirmPasswordNoSpaces, confirmation: true};
+    // }
 
     static youtubeURLValidation(youtubeURL) {
         const urlNoSpaces = youtubeURL.replace(Validation.spaceRegex, "");
@@ -70,6 +87,14 @@ export default class Validation {
         }
         return {error: "", numberField: numberNoSpaces}
 
+    }
+
+    static validateVerificationNumberField(number) {
+        const numberNoSpaces = number.replace(Validation.spaceRegex, "");
+        if(!Validation.verifyEmailCodeRegex.test(number)) {
+            return {error: "Invalid number", numberField: numberNoSpaces};
+        }
+        return {error: "", numberField: numberNoSpaces};
     }
 
 }

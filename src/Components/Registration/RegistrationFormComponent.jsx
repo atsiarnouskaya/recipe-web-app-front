@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import InputComponent from "../Input/InputComponent";
 import Button from "../Button/Button";
 import classes from "../Form/FormStyle.module.css"
@@ -8,31 +8,62 @@ import Validation from "../../Validation/Validation";
 function RegistrationFormComponent({register, error}) {
 
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [userError, setUserError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
+    const [passwordsMatchError, setPasswordsMatchError] = useState("");
+
+    useEffect(() => {
+        if (!password || !confirmPassword) {
+            setPasswordsMatchError("");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setPasswordsMatchError("Passwords do not match");
+        } else {
+            setPasswordsMatchError("");
+        }
+    }, [password, confirmPassword]);
+
 
     return (
         <div className={classes.centerWrapper}>
-            <form className={classes.form}>
-                <h2 className={classes.h2}>Please enter your username and password to sign up</h2>
+            <form className={classes.form} onSubmit={(e) => {
+                e.preventDefault();
+
+                if (passwordsMatchError) {
+                    alert("Passwords don't match");
+                    setPassword("");
+                    setConfirmPassword("");
+                    return;
+                }
+                register(username, password, email)}}>
+                <h2 className={classes.h2}>Please enter your email, username and password to sign up</h2>
+
+                <InputComponent
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                        const emailValidation = Validation.validateEmail(e.target.value);
+                        setEmail(emailValidation.email)
+                        setEmailError(emailValidation.error)}
+                    }
+                    placeholder="Email"
+                />
+                {emailError && <span className={classes.errorMessage}>{emailError}</span>}
 
                 <InputComponent
                     type="text"
                     value={username}
                     onChange={e => {
                         const usernameValidation = Validation.validateUsername(e.target.value);
-
-                        if (usernameValidation.error === "") {
-                            setUserError("");
-                            setUsername(usernameValidation.username);
-                        }
-                        else {
-                            setUserError(usernameValidation.error);
-                            setUsername(usernameValidation.username);
-                        }
+                        setUserError(usernameValidation.error);
+                        setUsername(usernameValidation.username);
                     }
                     }
                     placeholder="Username" />
@@ -43,14 +74,8 @@ function RegistrationFormComponent({register, error}) {
                     value={password}
                     onChange={e => {
                         const passwordValidation = Validation.validatePassword(e.target.value);
-
-                        if (passwordValidation.error === "") {
-                            setPasswordError("")
-                            setPassword(passwordValidation.password);
-                        } else {
-                            setPasswordError(passwordValidation.error)
-                            setPassword(passwordValidation.password);
-                        }
+                        setPasswordError(passwordValidation.error)
+                        setPassword(passwordValidation.password)
                     }}
                     placeholder="Password" />
                 {passwordError && <span className={classes.errorMessage}>{passwordError}</span>}
@@ -59,31 +84,28 @@ function RegistrationFormComponent({register, error}) {
                     type="password"
                     value={confirmPassword}
                     onChange={e => {
-                        const confirmPasswordValidation = Validation.confirmPasswordValidation(e.target.value, password);
-                        if (confirmPasswordValidation.confirmation) {
-                            setConfirmPassword(confirmPasswordValidation.password);
-                            setConfirmPasswordError(confirmPasswordValidation.error)
-                            return;
-                        }
+                        const confirmPasswordValidation = Validation.validatePassword(e.target.value);
                         setConfirmPasswordError(confirmPasswordValidation.error)
-                        setConfirmPassword(confirmPasswordValidation.password);
+                        setConfirmPassword(confirmPasswordValidation.password)
                     }}
                     placeholder="Confirm password"
                     style={{borderColor: confirmPasswordError ? "red" : ""}}/>
 
+                {passwordsMatchError && <span className={classes.errorMessage}>{passwordsMatchError}</span>}
                 {error && (<span className={classes.errorMessage}>{error}</span>)}
                 <Button
-                    onClick={(e) => {
-                    e.preventDefault();
-
-                    if (confirmPasswordError) {
-                        alert("Passwords don't match");
-                        setPassword("");
-                        setConfirmPassword("");
-                        return;
-                    }
-                    register(username, password)}}
-                    disabled={!(username && password && confirmPassword)}>
+                    type="submit"
+                    disabled={
+                        !username ||
+                        !email ||
+                        !password ||
+                        !confirmPassword ||
+                        emailError ||
+                        userError ||
+                        passwordError ||
+                        confirmPasswordError ||
+                        passwordsMatchError
+                    }>
                     Register
                 </Button>
 

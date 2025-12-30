@@ -7,22 +7,27 @@ function RegisterPage() {
 
     const navigate = useNavigate();
     const [registrationError, setRegistrationError] = useState("");
-    const register = async (username, password) => {
+
+    const register = async (username, password, email) => {
 
         if (!username || !password) {
             console.error("Username and password cannot be empty");
             return;
         }
 
-        const response = await AuthService.register(username, password);
+        const response = await AuthService.register(username, password, email);
 
         if (response.status === 400) {
             console.log(response);
-            setRegistrationError(response.data.username || response.data.password);
+            setRegistrationError(response.data.message);
         }
 
         if (response.status === 200 || response.status === 201) {
-            navigate("/register-success");
+            navigate("/verifyEmail", {
+                state: {
+                    email: response.data.email
+                }
+            });
         }
     }
 
