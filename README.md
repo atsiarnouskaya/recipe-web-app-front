@@ -17,24 +17,23 @@ Oferuje m.in.:
 #### Auth
 
 ```http
-    POST /signup - rejestracja użytkownika ({username, password})
-    POST /signin - logowanie użytkownika ({username, password})
-    POST /logout - wylogowanie ({})
+POST /signup - rejestracja użytkownika ({username, password})
+POST /signin - logowanie użytkownika ({username, password})
+POST /logout - wylogowanie ({})
 ```
 
 #### Recipes
 
 ```http
-    GET /custom/recipes - pobranie wszystkich przepisów z bazy
-    GET /custom/recipe/${id} - pobranie przepisu o id == id
-    GET /custom/recipes/${userId} - pobranie przepisów użytkownika o id == userId
-    GET /categories - pobranie wszystkich kategorii z bazy
-    GET /custom/${userId}/favRecipes - pobranie ulubionych przepisów użytkownika o id == userId
-    POST /custom/addRecipe - dodanie nowego przepisu ({recipe object})
-    PUT /custom/deleteRecipe/${id} - miękkie usunięcie przepisu (zmiana flagi w bazie) o id == id
-    PUT /custom/recipes/${id} - aktualizacja przepisu o id == id
-    PUT /custom/fav - polubienie lub usunięcie polubienia przepisu ({recipeId, mode (like or dislike)})
-
+GET /custom/recipes - pobranie wszystkich przepisów z bazy
+GET /custom/recipe/${id} - pobranie przepisu o id == id
+GET /custom/recipes/${userId} - pobranie przepisów użytkownika o id == userId
+GET /categories - pobranie wszystkich kategorii z bazy
+GET /custom/${userId}/favRecipes - pobranie ulubionych przepisów użytkownika o id == userId
+POST /custom/addRecipe - dodanie nowego przepisu ({recipe object})
+PUT /custom/deleteRecipe/${id} - miękkie usunięcie przepisu (zmiana flagi w bazie) o id == id
+PUT /custom/recipes/${id} - aktualizacja przepisu o id == id
+PUT /custom/fav - polubienie lub usunięcie polubienia przepisu ({recipeId, mode (like or dislike)})
 ```
 
 ## Uruchamianie lokalnie
@@ -91,23 +90,23 @@ This is a frontend part of my pet-project Recipe web-application. It provides wi
 #### Auth
 
 ```http
-    POST /signup - signing up ({username, password})
-    POST /signin - signing in ({username, password})
-    POST /logout - loging out ({})
+POST /signup - signing up ({username, password})
+POST /signin - signing in ({username, password})
+POST /logout - loging out ({})
 ```
 
 #### Recipes
 
 ```http
-    GET /custom/recipes - get all recipes from a db
-    GET /custom/recipe/${id} - get recipe with id == id
-    GET /custom/recipes/${userId} - get users with id == userId recipes
-    GET /categories - get all categories from a db
-    GET /custom/${userId}/favRecipes - get users with id == userId favourite recipes
-    POST /custom/addRecipe - add a new recipe ({recipe object})
-    PUT /custom/deleteRecipe/${id} - soft delete (change a flag in a db) of recipe with id == id
-    PUT /custom/recipes/${id} - updating a recipe with id == id
-    PUT /custom/fav - liking or disliking a recipe ({recipeId, mode (like or dislike)})
+GET /custom/recipes - get all recipes from a db
+GET /custom/recipe/${id} - get recipe with id == id
+GET /custom/recipes/${userId} - get users with id == userId recipes
+GET /categories - get all categories from a db
+GET /custom/${userId}/favRecipes - get users with id == userId favourite recipes
+POST /custom/addRecipe - add a new recipe ({recipe object})
+PUT /custom/deleteRecipe/${id} - soft delete (change a flag in a db) of recipe with id == id
+PUT /custom/recipes/${id} - updating a recipe with id == id
+PUT /custom/fav - liking or disliking a recipe ({recipeId, mode (like or dislike)})
 ```
 
 ## Run Locally
