@@ -1,4 +1,4 @@
-import AllRecipes from "../Pages/AllRecipes";
+import AllRecipes from "../Pages/AllRecipes/AllRecipes";
 import CreateRecipe from "../Pages/CreateRecipe";
 import RecipeById from "../Pages/RecipeById";
 import EditRecipe from "../Components/Recipe/Editing/EditRecipe";

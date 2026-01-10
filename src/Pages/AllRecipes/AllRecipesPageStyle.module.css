@@ -1,0 +1,47 @@
+.centerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.centerWrapper :global(.lottie-react-container) {
+    width: 150px;
+    height: 150px;
+}
+
+.noRecipeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 80vh;
+    gap: 20px;
+}
+
+.testArea h2 {
+    font-size: 1.8rem;
+    color: #333;
+    max-width: 500px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.noRecipeWrapper svg {
+    transition: transform 0.4s ease, filter 0.4s ease;
+    cursor: pointer;
+    max-width: 100%;
+    height: auto;
+}
+
+.noRecipeWrapper svg:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.3));
+}
+
+.noRecipeWrapper svg:active {
+    transform: scale(0.95);
+}

@@ -1,5 +1,5 @@
 import './App.css';
-import AllRecipes from "./Pages/AllRecipes";
+import AllRecipes from "./Pages/AllRecipes/AllRecipes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateRecipe from "./Pages/CreateRecipe";
 import Navbar from "./Components/Navigation/Navbar";
