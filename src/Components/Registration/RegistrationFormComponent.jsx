@@ -60,7 +60,7 @@ function RegistrationFormComponent({register, error, disabled}) {
                         setEmailError(emailValidation.error)}
                     }
                     placeholder="Email"
-                    style={{borderColor: emailError ? "red" : "lightBlue"}}
+                    style={{borderColor: emailError ? "red" : ""}}
                 />
                 {emailError && <span className={classes.errorMessage}>{emailError}</span>}
 
@@ -75,7 +75,7 @@ function RegistrationFormComponent({register, error, disabled}) {
                     }
                     }
                     placeholder="Username"
-                    style={{borderColor: usernameError ? "red" : "lightBlue"}}/>
+                    style={{borderColor: usernameError ? "red" : ""}}/>
                 {usernameError && <span className={classes.errorMessage}>{usernameError}</span>}
 
                 <InputComponent
@@ -88,7 +88,7 @@ function RegistrationFormComponent({register, error, disabled}) {
                         setPassword(passwordValidation.password)
                     }}
                     placeholder="Password"
-                    style={{borderColor: passwordError ? "red" : "lightBlue"}}/>
+                    style={{borderColor: passwordError ? "red" : ""}}/>
                 {passwordError && <span className={classes.errorMessage}>{passwordError}</span>}
 
                 <InputComponent
@@ -101,7 +101,7 @@ function RegistrationFormComponent({register, error, disabled}) {
                         setConfirmPassword(confirmPasswordValidation.password)
                     }}
                     placeholder="Confirm password"
-                    style={{borderColor: confirmPasswordError ? "red" : "lightBlue"}}/>
+                    style={{borderColor: confirmPasswordError ? "red" : ""}}/>
 
                 {passwordsMatchError && <span className={classes.errorMessage}>{passwordsMatchError}</span>}
                 {error && <p className={classes.errorMessage}>Validation by server: {error}</p>}

@@ -1,12 +1,25 @@
 .loginPage {
-    min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.cardWrapper {
+    position: relative;
+    overflow: hidden;
 }
 
 .loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    z-index: 10;
+    backdrop-filter: blur(4px);
 }

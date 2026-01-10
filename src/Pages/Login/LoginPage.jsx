@@ -3,15 +3,13 @@ import {useContext, useState} from "react";
 import {AuthContext} from "../../API/Context";
 import AuthService from "../../API/AuthService";
 import Lottie from "lottie-react";
-import mail from "../../Utils/LottiesAnimations/mail.json"
 import cat from "../../Utils/LottiesAnimations/loaderCat.json"
 import {useNavigate} from "react-router-dom";
-import EmailVerification from "../../API/EmailVerification";
 import classes from "./LoginStyle.module.css"
 
 const LoginPage = () => {
 
-    const {isAuth, setIsAuth, user, setUser} = useContext(AuthContext);
+    const {setIsAuth, setUser} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [error, setError] = useState("");
@@ -23,31 +21,31 @@ const LoginPage = () => {
             setError("Please enter both username and password");
             return;
         }
+        setLoading(true);
+        setError("");
 
         try {
-            setLoading(true);
             const response = await AuthService.login(username, password)
-
-            if (response.status === 200) {
-                setUser(response.data.username);
-                setError("");
-                setIsAuth(true);
-
+            const { data, status } = response;
+            if (status === 200) {
                 localStorage.setItem('auth', 'true');
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorage.setItem('user', JSON.stringify(data));
 
-            } else if (response.status === 403) {
+                setUser(data.username);
+                setIsAuth(true);
+                setError("");
+            } else if (status === 403) {
                 navigate("/verifyEmail", {
                     state: {
                         email: response.data.email,
                         autoResend: true
                     }
                 });
-            } else {
+            } else if (status === 401) {
                 setError("Invalid username or password");
             }
         } catch (err) {
-            setError(err + " Server error. Try again later.");
+            setError("Server error. Try again later.");
         } finally {
             setLoading(false);
         }
@@ -55,11 +53,13 @@ const LoginPage = () => {
 
     return (
         <div className={classes.loginPage}>
-            <div className={classes.loader}>
-                {loading && <Lottie animationData={cat} loop={true}/>}
+            <div className={classes.cardWrapper}>
+                {loading && (
+                    <div className={classes.loader}>
+                        <Lottie animationData={cat} loop={true} size={200} />
+                    </div>)}
+                <LoginFormComponent login={loginUser} error={error} disabled={loading}/>
             </div>
-
-            {!loading && <LoginFormComponent login={loginUser} error={error} />}
         </div>
 
     )
