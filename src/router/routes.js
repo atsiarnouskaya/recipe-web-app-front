@@ -2,11 +2,11 @@ import AllRecipes from "../Pages/AllRecipes";
 import CreateRecipe from "../Pages/CreateRecipe";
 import RecipeById from "../Pages/RecipeById";
 import EditRecipe from "../Components/Recipe/Editing/EditRecipe";
-import LoginPage from "../Pages/LoginPage";
-import RegisterPage from "../Pages/RegisterPage";
+import LoginPage from "../Pages/Login/LoginPage";
+import RegisterPage from "../Pages/Registration/RegisterPage";
 import RegistrationSuccess from "../Components/Registration/RegistrationSuccess";
 import MyAccountPage from "../Pages/MyAccountPage";
-import VerifyEmailPage from "../Pages/VerifyEmailPage";
+import VerifyEmailPage from "../Pages/EmailVerification/VerifyEmailPage";
 
 export const privateRoutes = [
     {path: '/allRecipes', component: <AllRecipes/>},

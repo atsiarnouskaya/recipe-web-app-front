@@ -5,10 +5,10 @@ import CreateRecipe from "./Pages/CreateRecipe";
 import Navbar from "./Components/Navigation/Navbar";
 import RecipeById from "./Pages/RecipeById"
 import EditRecipe from "./Components/Recipe/Editing/EditRecipe"
-import LoginPage from "./Pages/LoginPage"
+import LoginPage from "./Pages/Login/LoginPage"
 import {AuthContext, AuthProvider, RecipeContext} from "./API/Context";
 import {useState, useEffect} from "react";
-import RegisterPage from "./Pages/RegisterPage";
+import RegisterPage from "./Pages/Registration/RegisterPage";
 import RegistrationSuccess from "./Components/Registration/RegistrationSuccess";
 import AppRouterComponent from "./Components/AppRouter/AppRouterComponent";
 

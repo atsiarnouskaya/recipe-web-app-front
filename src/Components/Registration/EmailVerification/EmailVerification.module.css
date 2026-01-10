@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f4f6f8;
 }
 
 .verifyCard {
@@ -20,11 +19,18 @@
 }
 
 .h2 {
-    margin: 0;
+    margin-bottom: 0.5rem;
     font-size: 1.2rem;
     text-align: center;
     color: #660000;
-    line-height: 1.4;
+}
+
+.h4 {
+    margin-bottom: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: lighter;
+    text-align: center;
+    color: #bbba;
 }
 
 .inputWrapper {
@@ -44,11 +50,8 @@
 }
 
 .resendMessage {
-    color: dodgerblue;
-    background-color: snow;
-    border: 1px solid lightsteelblue;
+    color: forestgreen;
     padding: 8px 12px;
-    border-radius: 6px;
     font-size: 0.85rem;
     text-align: center;
 }

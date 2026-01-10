@@ -5,14 +5,16 @@ import classes from "../Form/FormStyle.module.css"
 import {Link} from "react-router-dom";
 import Validation from "../../Validation/Validation";
 
-function RegistrationFormComponent({register, error}) {
+function RegistrationFormComponent({register, error, disabled}) {
 
     const [username, setUsername] = useState("");
+    const [usernameError, setUsernameError] = useState("");
+
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
+
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [userError, setUserError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [passwordsMatchError, setPasswordsMatchError] = useState("");
@@ -33,19 +35,23 @@ function RegistrationFormComponent({register, error}) {
 
     return (
         <div className={classes.centerWrapper}>
-            <form className={classes.form} onSubmit={(e) => {
-                e.preventDefault();
 
-                if (passwordsMatchError) {
-                    alert("Passwords don't match");
-                    setPassword("");
-                    setConfirmPassword("");
-                    return;
-                }
-                register(username, password, email)}}>
+            <form className={classes.form}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+
+                    if (passwordsMatchError) {
+                        alert("Passwords don't match");
+                        setPassword("");
+                        setConfirmPassword("");
+                        return;
+                    }
+                    register(username, password, email)}}>
+
                 <h2 className={classes.h2}>Please enter your email, username and password to sign up</h2>
 
                 <InputComponent
+                    disabled={disabled}
                     type="email"
                     value={email}
                     onChange={(e) => {
@@ -54,22 +60,26 @@ function RegistrationFormComponent({register, error}) {
                         setEmailError(emailValidation.error)}
                     }
                     placeholder="Email"
+                    style={{borderColor: emailError ? "red" : "lightBlue"}}
                 />
                 {emailError && <span className={classes.errorMessage}>{emailError}</span>}
 
                 <InputComponent
+                    disabled={disabled}
                     type="text"
                     value={username}
                     onChange={e => {
                         const usernameValidation = Validation.validateUsername(e.target.value);
-                        setUserError(usernameValidation.error);
+                        setUsernameError(usernameValidation.error);
                         setUsername(usernameValidation.username);
                     }
                     }
-                    placeholder="Username" />
-                {userError && <span className={classes.errorMessage}>{userError}</span>}
+                    placeholder="Username"
+                    style={{borderColor: usernameError ? "red" : "lightBlue"}}/>
+                {usernameError && <span className={classes.errorMessage}>{usernameError}</span>}
 
                 <InputComponent
+                    disabled={disabled}
                     type="password"
                     value={password}
                     onChange={e => {
@@ -77,10 +87,12 @@ function RegistrationFormComponent({register, error}) {
                         setPasswordError(passwordValidation.error)
                         setPassword(passwordValidation.password)
                     }}
-                    placeholder="Password" />
+                    placeholder="Password"
+                    style={{borderColor: passwordError ? "red" : "lightBlue"}}/>
                 {passwordError && <span className={classes.errorMessage}>{passwordError}</span>}
 
                 <InputComponent
+                    disabled={disabled}
                     type="password"
                     value={confirmPassword}
                     onChange={e => {
@@ -89,10 +101,10 @@ function RegistrationFormComponent({register, error}) {
                         setConfirmPassword(confirmPasswordValidation.password)
                     }}
                     placeholder="Confirm password"
-                    style={{borderColor: confirmPasswordError ? "red" : ""}}/>
+                    style={{borderColor: confirmPasswordError ? "red" : "lightBlue"}}/>
 
                 {passwordsMatchError && <span className={classes.errorMessage}>{passwordsMatchError}</span>}
-                {error && (<span className={classes.errorMessage}>{error}</span>)}
+                {error && <p className={classes.errorMessage}>Validation by server: {error}</p>}
                 <Button
                     type="submit"
                     disabled={
@@ -101,10 +113,11 @@ function RegistrationFormComponent({register, error}) {
                         !password ||
                         !confirmPassword ||
                         emailError ||
-                        userError ||
+                        usernameError ||
                         passwordError ||
                         confirmPasswordError ||
-                        passwordsMatchError
+                        passwordsMatchError ||
+                        disabled
                     }>
                     Register
                 </Button>
