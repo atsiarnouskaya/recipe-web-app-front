@@ -11,6 +11,7 @@ const ComboboxComponent = ({options, onChange, value, placeholder}) => {
     }
 
     return (
+
         <div className={classes.wrapper}>
             <input
                 placeholder={placeholder}
@@ -26,15 +27,15 @@ const ComboboxComponent = ({options, onChange, value, placeholder}) => {
             {open && (
                 <ul className={classes.list}>
                     {options
-                        .filter(opt => opt.value.toLowerCase().includes(value.toLowerCase()))
+                        .filter(opt => opt.categoryName.toLowerCase().includes(value.toLowerCase()))
                         .map(opt => (
                             <li
                                 className={classes.item}
-                                key={opt.value}
-                                onClick={() => handleChange(opt.value)}
+                                key={opt.categoryName}
+                                onClick={() => handleChange(opt.categoryName)}
                                 style={{cursor: "pointer", listStyle: "none"}}
                             >
-                                {opt.value}
+                                {opt.categoryName}
                             </li>
                         ))}
                 </ul>

@@ -1,0 +1,96 @@
+.recipeSection {
+    background: #ffffff;
+    border: 1px solid #eef0f2;
+    border-radius: 16px;
+    padding: 24px 24px 12px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    max-width: 600px;
+}
+
+.recipeSection:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.recipeSection h4 {
+    margin: 0 0 8px 0;
+    color: #660000;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.recipeSection h6 {
+    margin: 0 0 20px 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+
+.recipeSection label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #450000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.inputGroup {
+    margin-bottom: 18px;
+}
+
+.errorMessage {
+    color: #e74c3c;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 500;
+}
+
+.textareaField {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 2px solid #dcdde1;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+    background-color: #f9f9f9;
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+    padding: 12px;
+    margin: 0;
+}
+
+.textareaField:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: #4cafef;
+    box-shadow: 0 0 0 4px rgba(76, 175, 239, 0.4);
+}
+
+.videoPreview {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #000;
+}
+
+.videoPreview {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

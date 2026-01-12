@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from "react";
-import RecipeFormComponent from "../../Form/RecipeFormComponent";
+import RecipeFormComponent from "../CreateRecipeComponents/RecipeFormComponent";
 import {useState} from "react";
 import {useParams} from "react-router-dom";
 import useFetching from "../../../hooks/useFetching";

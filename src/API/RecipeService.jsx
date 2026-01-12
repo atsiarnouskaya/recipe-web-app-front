@@ -37,7 +37,7 @@ export default class RecipeService extends React.Component {
     }
 
     static async getAllCategories() {
-        const response = await axios.get("http://localhost:8080/categories",
+        const response = await axios.get("http://localhost:8080/custom/categories",
             {withCredentials: true});
 
         return response;

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import useFetching from "../hooks/useFetching";
-import RecipeFormComponent from "../Components/Form/RecipeFormComponent";
+import RecipeFormComponent from "../Components/Recipe/CreateRecipeComponents/RecipeFormComponent";
 import RecipeService from "../API/RecipeService";
 import {RecipeContext} from "../API/Context";
 

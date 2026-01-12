@@ -8,7 +8,7 @@ export default class Validation {
     static verifyEmailCodeRegex = /[0-9]{6}/;
     static emailRegex = /^[a-z0-9]+@[a-z0-9]+\.[a-z]{2,4}$/;
 
-    static ytPattern = /https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}/;
+    static ytPattern = /(https:\/\/www\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11})?/;
 
 
     static validateUsername(username) {
@@ -63,8 +63,10 @@ export default class Validation {
     static youtubeURLValidation(youtubeURL) {
         const urlNoSpaces = youtubeURL.replace(Validation.spaceRegex, "");
         const res = Validation.ytPattern.test(urlNoSpaces);
-        console.log(res);
-        return {error: res, url: urlNoSpaces};
+        if (!res) {
+            return {error: "Enter a valid YouTube link.", url: urlNoSpaces};
+        }
+        return {error: "", url: urlNoSpaces};
     }
 
     static validateTextField(text, maxLength) {

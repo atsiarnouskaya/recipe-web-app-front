@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import InputComponent from "../Input/InputComponent";
 import Button from "../Button/Button";
-import classes from "../Form/FormStyle.module.css"
+import classes from "../Recipe/CreateRecipeComponents/FormStyle.module.css"
 import {Link} from "react-router-dom";
 import Validation from "../../Validation/Validation";
 

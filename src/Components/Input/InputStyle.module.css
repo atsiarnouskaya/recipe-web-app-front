@@ -2,13 +2,14 @@
 .input {
     box-sizing: border-box;
     width: 100%;
-    padding: 0.55rem 0.75rem;
+    padding: 12px;
     font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    border: 1px solid #dcdde1;
+
+    border-radius: 8px;
     background: #fff;
-    margin: 0.2rem 0;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    margin: 0;
+    transition: all 0.2s ease;
 }
 
 .input:focus {

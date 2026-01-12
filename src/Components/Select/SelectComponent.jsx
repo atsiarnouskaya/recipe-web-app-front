@@ -2,7 +2,6 @@ import React from 'react';
 import classes from "./Select.module.css"
 
 const SelectComponent = ({options, defaultValue, value, onChange}) => {
-    console.log("Select component " + options);
     return (
 
 

@@ -1,16 +1,23 @@
 .select {
-    box-sizing: border-box;
     width: 100%;
-    padding: 0.55rem 0.75rem;
-    font-size: 0.95rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #fff;
-    margin: 0.2rem 0;
-    transition: border-color 0.2s, box-shadow 0.2s;}
-
+    padding: 9px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #2c3e50;
+    background-color: #ffffff;
+    border: 1.5px solid #dcdde1;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
 .select:focus {
     border-color: #4cafef;
     outline: none;
     box-shadow: 0 0 4px rgba(76, 175, 239, 0.4);
+}
+
+.select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #2c3e50;
 }
