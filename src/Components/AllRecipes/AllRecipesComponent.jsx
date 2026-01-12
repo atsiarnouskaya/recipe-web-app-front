@@ -8,18 +8,24 @@ const AllRecipesComponent = ({recipes, title}) => {
     const router = useNavigate()
 
     return (
-        <div >
-            <h1 className={classes.h1}>{title}</h1>
-            <br></br>
-            {recipes.map((recipe) => (
-                <div key={recipe.id} className={classes.wrapper}>
-                    <h2 className={classes.h2}>{recipe.title}</h2>
+        <div className={classes.recipeGrid}>
 
-                    <p>{`${recipe.shortDescription}`}</p>
-                    <div className={classes.buttonRow}>
-                        <Button className={classes.cardButton} onClick={() => router(`/recipe/${recipe.id}`)} >More</Button>
+            {recipes.map((recipe) => (
+                <article key={recipe.id} className={classes.recipeCard}>
+                    <div className={classes.imagePlaceholder}>
+                        {/* Здесь потом будет <img src={recipe.image} /> */}
+                        <span>No image available</span>
                     </div>
-                </div>
+
+                    <div className={classes.cardContent}>
+                        <h2 className={classes.cardTitle}>{recipe.title}</h2>
+
+                        <p className={classes.cardDescription}>{recipe.shortDescription}</p>
+                    </div>
+                    <div className={classes.cardFooter}>
+                        <Button onClick={() => router(`/recipe/${recipe.id}`)} >More</Button>
+                    </div>
+                </article>
             ))}
         </div>
     )
