@@ -24,14 +24,14 @@
 }
 
 .navbarBtn {
-    background-color: #7b0000;
+    background-color: #660000;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     padding: 8px 18px;
     font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.15s;
+    transition: all 0.3s ease;
 }
 
 .navbarBtn:hover {

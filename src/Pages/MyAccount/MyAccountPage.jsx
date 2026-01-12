@@ -1,10 +1,11 @@
 import {useContext, useEffect, useState} from "react";
-import {AuthContext} from "../API/Context";
-import RecipeService from "../API/RecipeService";
-import AllRecipesComponent from "../Components/AllRecipes/AllRecipesComponent";
-import AccountInfoComponent from "../Components/AccountInfo/AccountInfoComponent";
-import Button from "../Components/Button/Button";
-import classes from "../Components/AccountInfo/AccountInfoStyle.module.css"
+import {AuthContext} from "../../API/Context";
+import RecipeService from "../../API/RecipeService";
+import AllRecipesComponent from "../../Components/AllRecipes/AllRecipesComponent";
+import AccountInfoComponent from "../../Components/AccountInfo/AccountInfoComponent";
+import Button from "../../Components/Button/Button";
+import classes from "../../Components/AccountInfo/AccountInfoStyle.module.css"
+import {ReactComponent as Cooking} from "../../Utils/SVGs/cooking2.svg";
 
 const MyAccountPage = () => {
 
@@ -53,14 +54,31 @@ const MyAccountPage = () => {
     const renderTab = () => {
         if (activeTab === "my") {
             if (noRecipesFound) {
-                return <h3>No recipes found ;(</h3>
+                return (
+                    <div className={classes.noRecipes}>
+                        <h3>No recipes found 😢</h3>
+                        <Cooking
+                            width={400}
+                            height={400}/>
+                    </div>
+                )
+
             } else {
                 return <AllRecipesComponent recipes={userRecipes} title='Your recipes'/>
             }
         }
         if (activeTab === "liked") {
             if (noFavouritesFound) {
-                return <h3>No liked recipes found ;(</h3>
+                return (
+                    <div className={classes.noRecipeWrapper}>
+                        <div className={classes.noRecipes}>
+                            <h3>No liked recipes found 😢. Let's cook something!</h3>
+                            <Cooking
+                                width={400}
+                                height={400}/>
+                        </div>
+                    </div>
+                )
             } else {
                 return <AllRecipesComponent recipes={userFavouriteRecipes} title='Your Favourite Recipes'/>
             }

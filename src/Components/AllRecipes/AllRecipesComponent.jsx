@@ -3,7 +3,6 @@ import classes from "./AllRecipesStyle.module.css"
 import Button from "../Button/Button";
 import {useNavigate} from "react-router-dom";
 
-
 const AllRecipesComponent = ({recipes, title}) => {
     const router = useNavigate()
 

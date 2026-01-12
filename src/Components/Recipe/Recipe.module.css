@@ -97,7 +97,7 @@
     background-color: #e74c3c;
     color: white;
     padding: 12px 25px;
-    border-radius: 8px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -113,7 +113,7 @@
     background-color: #2f3542;
     color: white;
     padding: 12px 25px;
-    border-radius: 8px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -216,4 +216,14 @@
     color: #660000;
     font-size: 1.25rem;
     font-weight: 700;
+}
+
+.videoPreview {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #000;
 }

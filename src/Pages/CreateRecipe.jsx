@@ -1,46 +1,37 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import useFetching from "../hooks/useFetching";
 import RecipeFormComponent from "../Components/Recipe/CreateRecipeComponents/RecipeFormComponent";
 import RecipeService from "../API/RecipeService";
-import {RecipeContext} from "../API/Context";
+import classes from "./Registration/RegisterPageStyle.module.css";
+import Lottie from "lottie-react";
+import cat from "../Utils/LottiesAnimations/loaderCat.json";
 
 const CreateRecipePage = () => {
 
     const [recipes, setRecipes] = useState([]);
-
-    const {categories, setCategories} = useContext(RecipeContext);
 
     const [saveRecipe, isSaving, recipeSavingError] = useFetching(async (recipe) => {
         const response = await RecipeService.saveRecipe(recipe)
         setRecipes([...recipes, response.data])
     })
 
-    const [getCategories, isLoading, loadingCategoriesError] = useFetching(async () => {
-        const response = await RecipeService.getAllCategories()
-        console.log(response.data._embedded.categories)
-        setCategories(response.data._embedded.categories.map(category => {
-            return {name: category.categoryName,
-                    value: category.categoryName}
-        }))
-
-    })
-
     const savingRecipe = async (recipe) => {
         await saveRecipe(recipe)
     }
 
-    useEffect(() =>
-    {getCategories()}, [])
-
     if (isSaving) {
-        return <h3>Saving...</h3>
+        return (
+            <div className={classes.loader}>
+                <Lottie animationData={cat} loop style={{ width: 150 }} />
+            </div>
+        )
     }
     if (recipeSavingError) {
         alert("Saving failed.")
     }
 
     return (
-        <RecipeFormComponent saveRecipe={savingRecipe} categories={categories} />
+        <RecipeFormComponent saveRecipe={savingRecipe}/>
     )
 }
 

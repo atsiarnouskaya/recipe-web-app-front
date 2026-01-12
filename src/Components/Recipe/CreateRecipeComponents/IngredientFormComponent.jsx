@@ -2,12 +2,10 @@ import React, {useContext, useEffect, useState} from "react";
 import SelectComponent from "../../Select/SelectComponent";
 import InputComponent from "../../Input/InputComponent";
 import classes from "./FormStyle.module.css";
-import btn from "../../AllRecipes/AllRecipesStyle.module.css";
 import Button from "../../Button/Button";
 import {RecipeContext} from "../../../API/Context";
 import ComboboxComponent from "../../Combobox/ComboboxComponent";
 import RecipeService from "../../../API/RecipeService";
-import useFetching from "../../../hooks/useFetching";
 import Validation from "../../../Validation/Validation";
 
 const IngredientFormComponent = ({options, onChange, recipeTitle, initialIngredients}) => {

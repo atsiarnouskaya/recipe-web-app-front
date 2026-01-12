@@ -62,7 +62,10 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
                     {recipe.videoURL && (
                         <iframe
                             src={recipe.videoURL.replace("watch?v=", "embed/")}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
+                            title="Recipe Video Preview"
+                            className={classes.videoPreview}
                         />
 
                     )}

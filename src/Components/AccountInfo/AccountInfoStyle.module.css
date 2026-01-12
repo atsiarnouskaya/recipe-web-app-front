@@ -52,3 +52,23 @@
     color: white !important;
     box-shadow: 0 4px 15px rgba(102, 0, 0, 0.2);
 }
+
+.noRecipes h3 {
+    font-size: 1.8rem;
+    color: #333;
+    max-width: 500px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+.noRecipeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}

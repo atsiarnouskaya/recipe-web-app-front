@@ -1,11 +1,12 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import RecipeFormComponent from "../CreateRecipeComponents/RecipeFormComponent";
 import {useState} from "react";
 import {useParams} from "react-router-dom";
 import useFetching from "../../../hooks/useFetching";
 import RecipeService from "../../../API/RecipeService";
-import {RecipeContext} from "../../../API/Context";
-
+import classes from "../../../Pages/Registration/RegisterPageStyle.module.css";
+import Lottie from "lottie-react";
+import cat from "../../../Utils/LottiesAnimations/loaderCat.json";
 
 const EditRecipe = () => {
 
@@ -28,24 +29,18 @@ const EditRecipe = () => {
         setEditRecipe(response.data)
     })
 
-    const {categories, setCategories} = useContext(RecipeContext);
-
-    const [getCategories, isLoading, loadingCategoriesError] = useFetching(async () => {
-        const response = await RecipeService.getAllCategories()
-        setCategories(response.data._embedded.categories.map(category => {
-            return {name: category.categoryName,
-                    value: category.categoryName}
-        }))
-
-    })
 
     useEffect(() => {
         recipe(id)
-        getCategories()
     }, [])
 
     return (
         <div>
+            {updating && (
+                <div className={classes.loader}>
+                    <Lottie animationData={cat} loop style={{ width: 150 }} />
+                </div>
+            )}
             <RecipeFormComponent initialRecipe={editRecipe} saveRecipe={(recipe) => updateRecipe(id, recipe)} />
         </div>
     )

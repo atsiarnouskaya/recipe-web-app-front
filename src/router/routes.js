@@ -5,7 +5,7 @@ import EditRecipe from "../Components/Recipe/Editing/EditRecipe";
 import LoginPage from "../Pages/Login/LoginPage";
 import RegisterPage from "../Pages/Registration/RegisterPage";
 import RegistrationSuccess from "../Components/Registration/RegistrationSuccess";
-import MyAccountPage from "../Pages/MyAccountPage";
+import MyAccountPage from "../Pages/MyAccount/MyAccountPage";
 import VerifyEmailPage from "../Pages/EmailVerification/VerifyEmailPage";
 
 export const privateRoutes = [
