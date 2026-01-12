@@ -5,15 +5,14 @@ const IngredientsBlockComponent = ({ingredients}) => {
     return (
         <div>
 
-            <h5 className={classes.ingredientsTitle}>For this recipe you will need:</h5>
-
+            <h3 className={classes.h3}>🛒 For this recipe you will need:</h3>
+            <div className={classes.ingredientList}>
             {ingredients.map(ingr =>
-                <div className={classes.ingredientsGrid} key={ingr.id}>
-                    <span> {ingr.ingredientName} </span>
-                    <span> {ingr.amount} </span>
-                    <span> {ingr.unit} </span>
+                <div className={classes.ingredientItem} key={ingr.id}>
+                    <span className={classes.ingName}> {ingr.ingredientName} </span>
+                    <span className={classes.ingAmount}> {ingr.amount} {ingr.unit}</span>
                 </div>)}
-
+            </div>
 
         </div>
     )

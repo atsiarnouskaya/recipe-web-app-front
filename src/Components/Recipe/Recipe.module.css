@@ -1,105 +1,133 @@
-.recipeCard {
-    background: #fffafa;
-    border: 1px solid #b33;
-    border-radius: 12px;
-    padding: 24px;
-    max-width: 650px;
-    margin: 24px auto;
-    font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    color: #2b2b2b;
-    box-shadow: 0 2px 6px rgba(179, 51, 51, 0.1);
-    transition: box-shadow 0.2s ease;
+.recipeContainer {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-.recipeCard:hover {
-    box-shadow: 0 4px 10px rgba(179, 51, 51, 0.15);
+.headerSection {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #eee;
 }
 
 .recipeTitle {
-    font-size: 1.6rem;
+    font-size: 3rem;
+    color: #660000;
+    margin-bottom: 10px;
+    line-height: 1.1;
     font-weight: 700;
-    color: #800;
-    margin-bottom: 16px;
-    border-bottom: 2px solid #d66;
-    padding-bottom: 6px;
 }
 
-.headerRow {
+.recipeDescription {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.metaInfo {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 0.95rem;
+    color: #888;
+}
+
+.likeButton {
+    cursor: pointer;
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.contentWrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.mediaColumn {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.detailsColumn {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.imagePlaceholder {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: #f5f5f5;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
-}
-
-.section {
-    margin-bottom: 20px;
-}
-
-.description {
+    justify-content: center;
+    color: #ccc;
     font-size: 1rem;
-    line-height: 1.6;
-    color: #333;
+    overflow: hidden;
 }
 
-.ingredientsTitle,
-.instructionsTitle {
-    font-weight: 600;
-    color: #800;
-    margin-bottom: 10px;
-    font-size: 1.05rem;
+.imagePlaceholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.ingredientsGrid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 0.7fr;
-    align-items: center;
-    gap: 6px 12px;
-    font-size: 0.95rem;
-}
-
-.ingredientsGrid span {
-    padding: 4px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.instructions {
-    background: #fff0f0;
-    border-left: 4px solid #b33;
-    padding: 12px;
-    border-radius: 8px;
-    white-space: pre-wrap;
-    font-size: 0.95rem;
-}
-
-.actions {
+.actionButtons {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    margin-top: 16px;
+    gap: 15px;
+    padding-top: 30px;
+    border-top: 1px dashed #eee;
 }
 
-.button {
-    background-color: #7b0000;
-    color: #fff;
-    border: none;
+.deleteButton {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 25px;
     border-radius: 8px;
-    padding: 8px 18px;
-    font-size: 0.95rem;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.15s;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
 }
 
-.button:hover {
-    background-color: #a30000;
-    transform: scale(1.05);
+.deleteButton:hover {
+    background-color: #c0392b !important;
 }
 
-.button.active {
-    background-color: #b30000;
-    box-shadow: 0 0 10px rgba(123, 0, 0, 0.3);
+.editButton {
+    background-color: #2f3542;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
 }
+
+.editButton:hover {
+    background-color: #3498db !important;
+}
+
 
 .likeBtn {
-    border: solid 1px lightcoral;
+    border: solid 1px #FF0000FF;
     border-radius: 8px;
     background: none;
     cursor: pointer;
@@ -115,25 +143,54 @@
 
 .likeBtn.liked::before {
     content: "♥";
-    color: #ff4d6d;
+    color: #FF0000FF;
 }
 
 .likeBtn:hover {
     transform: scale(1.15);
+    background-color: whitesmoke !important;
 }
 
-.recipeCard iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: none;
-    border-radius: 12px;
-    display: block;
-    box-shadow: 0 2px 6px rgba(179, 51, 51, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.ingredientList {
+    list-style: none;
+    padding: 0;
 }
 
-.recipeCard iframe:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(179, 51, 51, 0.15);
+.ingredientItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f8fafc;
+    font-size: 1rem;
 }
 
+.ingredientItem:last-child {
+    border-bottom: none;
+}
+
+.ingName {
+    font-weight: 500;
+}
+
+.ingAmount {
+    color: #64748b;
+    font-style: italic;
+}
+
+.stepList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.stepText {
+    line-height: 1.6;
+    color: #1e293b;
+    padding-top: 2px;
+}
+
+.h3 {
+    margin: 0 0 8px 0;
+    color: #660000;
+    font-size: 1.25rem;
+    font-weight: 700;
+}

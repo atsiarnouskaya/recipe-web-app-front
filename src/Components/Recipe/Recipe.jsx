@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 import IngredientsBlockComponent from "./IngredientsBlockComponent";
 import InstructionsBlockComponent from "./InstructionsBlockComponent";
 import {AuthContext} from "../../API/Context";
-import Heart from "react-heart";
 
 const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
 
@@ -34,47 +33,50 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
     }, [favouriteRecipes, recipe.id]);
 
     return (
-        <div>
-            <div key={recipe.id} className={classes.recipeCard}>
+        <div className={classes.recipeContainer}>
 
-                <div className={classes.headerRow}>
+                <div className={classes.headerSection}>
                     <h2 className={classes.recipeTitle}>{recipe.title}</h2>
-                    <Button  className={`${classes.likeBtn} ${heartActive ? classes.liked : ''}`}  onClick={async (e) => {
-                        e.preventDefault();
-                        const response = await RecipeService.likeRecipe(recipe.id, heartActive);
-                        if (response.status === 200) {
+                    <p className={classes.recipeDescription}>{`${recipe.shortDescription}`}</p>
+                    <div className={classes.metaInfo}>
+                        <Button  className={`${classes.likeBtn} ${heartActive ? classes.liked : ''}`}  onClick={async (e) => {
+                            e.preventDefault();
+                            const response = await RecipeService.likeRecipe(recipe.id, heartActive);
+                            if (response.status === 200) {
 
-                            setHeartActive(!heartActive);
-                        }
-                    } }> like</Button>
+                                setHeartActive(!heartActive);
+                            }
+                        } }> like</Button>
+                    </div>
                 </div>
 
+            <div className={classes.contentWrapper}>
+                <div className={classes.mediaColumn}>
+                    <div className={classes.imagePlaceholder}>
+                        <span>Recipe image</span>
+                    </div>
+                    {recipe.videoURL && (
+                        <iframe
+                            src={recipe.videoURL.replace("watch?v=", "embed/")}
+                            allowFullScreen
+                        />
 
+                    )}
+                </div>
 
-
-
-                <p className={classes.description}>{`${recipe.shortDescription}`}</p>
-
-                <IngredientsBlockComponent ingredients={recipe.ingredients} />
-
-                <InstructionsBlockComponent instructions={recipe.steps} />
-
-                {recipe.videoURL && (
-                    <iframe
-                        src={recipe.videoURL.replace("watch?v=", "embed/")}
-                        allowFullScreen
-                    />
-
-                )}
+                <div className={classes.detailsColumn}>
+                    <IngredientsBlockComponent ingredients={recipe.ingredients} />
+                    <InstructionsBlockComponent instructions={recipe.steps} />
+                </div>
             </div>
 
 
 
             {recipe.username === user.username
                 &&
-            <div className={classes.actions}>
-                <Button className={classes.button} onClick={() => deleteRecipe(recipe)}>Delete</Button>
-                <Button className={classes.button} onClick={() => router(`/recipes/${recipe.id}/edit`)}>Edit</Button>
+            <div className={classes.actionButtons}>
+                <Button className={classes.deleteButton} onClick={() => deleteRecipe(recipe)}>Delete</Button>
+                <Button className={classes.editButton} onClick={() => router(`/recipes/${recipe.id}/edit`)}>Edit</Button>
             </div>
             }
         </div>
