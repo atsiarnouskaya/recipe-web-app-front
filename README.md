@@ -2,24 +2,31 @@
 To jest frontend mojego pet-projectu — aplikacji webowej z przepisami.
 Oferuje m.in.:
 
-- Rejestrację i logowanie
+- Rejestrację (z potwierdzeniem email poprzez wysyłanie kodu weryfikacyjnego) i logowanie
 
 - Dodawanie własnych przepisów poprzez formularz
 
-- Edytowanie i usuwanie wyłącznie swoich przepisów — jeśli nie jesteś autorem, nie masz takiej opcji
+- Edytowanie i usuwanie **wyłącznie swoich** przepisów
 
 - Lajkowanie i dislajkowanie przepisów
 
 - Stronę konta z Twoimi dodanymi oraz polubionymi przepisami
 
 ## Endpoints
-
+Tu są umieszczone endpointy, z których korzysta moja aplikacja.
 #### Auth
 
 ```http
 POST /signup - rejestracja użytkownika ({username, password})
 POST /signin - logowanie użytkownika ({username, password})
 POST /logout - wylogowanie ({})
+```
+
+#### Weryfikacja adresu email
+
+```http
+POST /verify - weryfikacja kodu ({email, verificationCode})
+POST /resendVerificationCode - ponowne wysłanie ({email})
 ```
 
 #### Recipes
@@ -65,6 +72,12 @@ Odpal lokalny serwer
 ```
 Wejdź na http://localhost:3000, żeby zobaczyć aplikację w przeglądarce.
 
+## Dalsze kroki
+- Możliwość dodawania obrazów do przepisów. (Jest to zrobione na frontendzie, lecz nie na backendzie,
+a więc zrobiłam No image available na ten moment.)
+- Folder przepisów, które użytkownik spróbował przygotować z możliwością dodania własnych komentarzy
+dotyczących czasu, smaku itd.
+- Sortowanie według składników.
 
 ## Autor
 
@@ -72,27 +85,39 @@ Wejdź na http://localhost:3000, żeby zobaczyć aplikację w przeglądarce.
 
 # Recipe web-application frontend (in English)
 
-This is a frontend part of my pet-project Recipe web-application. It provides with functionalities as:
+This is a frontend part of my pet-project Recipe web-application. 
 
+Main features include:
 
+- User registration (with email verification via a verification code) and login
 
-- Signing up and signing in
-- Adding your own recipes using a form
-- Editing or deleting only your own recipes! If you are not the authoer you won't be able to delete a recipe
-- Liking and disliking
-- Your account page with recipes you have added and liked
+- Adding custom recipes through a form
 
+- Editing and deleting only your own recipes
 
+- Liking and disliking recipes
+
+- User profile page with added and liked recipes
 
 
 ## Endpoints
 
+Below are the endpoints used by the application.
+
 #### Auth
 
 ```http
-POST /signup - signing up ({username, password})
-POST /signin - signing in ({username, password})
-POST /logout - loging out ({})
+POST /signup  - user registration ({ username, password })
+POST /signin  - user login ({ username, password })
+POST /logout  - user logout ({})
+```
+
+#### Email Verification
+
+```http
+POST /verify - verify email address ({ email, verificationCode })
+POST /resendVerificationCode - resend verification code ({ email })
+
 ```
 
 #### Recipes
@@ -111,9 +136,9 @@ PUT /custom/fav - liking or disliking a recipe ({recipeId, mode (like or dislike
 
 ## Run Locally
 
-Before running this project please ensure you have backend part and a db running
+Before running this project please make sure the backend and database are already set up and running.
 
-Clone the project
+Clone the repository:
 
 ```bash
   git clone https://github.com/atsiarnouskaya/recipe-web-app-front.git
@@ -138,6 +163,15 @@ Start the server
 ```
 Open http://localhost:3000 to view it in your browser.
 
+## Future Improvements
+
+- Ability to upload images for recipes.
+(Currently implemented on the frontend only, backend support is missing, so a “No image available” placeholder is used.)
+
+- A folder for recipes the user has already tried, with the option to add personal notes
+(e.g. preparation time, taste, improvements).
+
+- Ingredient-based sorting and filtering.
 
 ## Author
 
