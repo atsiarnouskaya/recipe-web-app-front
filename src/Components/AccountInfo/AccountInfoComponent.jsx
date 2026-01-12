@@ -2,7 +2,7 @@ import {useContext} from "react";
 import {AuthContext} from "../../API/Context";
 import classes from "./AccountInfoStyle.module.css"
 
-const AccountInfoComponent = () => {
+const AccountInfoComponent = ({likedRecipesAmount, addedRecipesAmount}) => {
 
     const {user} = useContext(AuthContext);
 
@@ -11,10 +11,11 @@ const AccountInfoComponent = () => {
     }
 
     return (
-        <div className={classes.profileContainer}>
-            <h1 className={classes.profileHeader}>Hello, {user.username}!</h1>
-            <p className={classes.profileHeader}>Here you can find your own recipes, edit them or delete,
+        <div className={classes.header}>
+            <h1>Hello, {user.username}!</h1>
+            <p>Here you can find your own recipes, edit them or delete,
                 and your favourite recipes.</p>
+            <p>You have created {addedRecipesAmount} recipes and liked {likedRecipesAmount} recipes!</p>
         </div>
     )
 }

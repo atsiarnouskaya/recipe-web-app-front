@@ -39,14 +39,18 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
                     <h2 className={classes.recipeTitle}>{recipe.title}</h2>
                     <p className={classes.recipeDescription}>{`${recipe.shortDescription}`}</p>
                     <div className={classes.metaInfo}>
-                        <Button  className={`${classes.likeBtn} ${heartActive ? classes.liked : ''}`}  onClick={async (e) => {
-                            e.preventDefault();
-                            const response = await RecipeService.likeRecipe(recipe.id, heartActive);
-                            if (response.status === 200) {
-
-                                setHeartActive(!heartActive);
-                            }
-                        } }> like</Button>
+                        <Button
+                            className={`${classes.likeBtn} ${heartActive ? classes.liked : ''}`}
+                            onClick={async (e) => {
+                                e.preventDefault();
+                                const response = await RecipeService.likeRecipe(recipe.id, heartActive);
+                                if (response.status === 200) {
+                                    setHeartActive(!heartActive);
+                                }
+                        } }> <
+                            span className={classes.heartIcon}></span>
+                            {heartActive ? 'Liked' : 'Like'}
+                        </Button>
                     </div>
                 </div>
 

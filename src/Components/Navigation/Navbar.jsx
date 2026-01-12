@@ -7,7 +7,7 @@ import {AuthContext} from "../../API/Context";
 
 const Navbar = () => {
 
-    const {isAuth, setIsAuth, user, setUser} = useContext(AuthContext);
+    const {isAuth, setIsAuth, setUser} = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -30,7 +30,6 @@ const Navbar = () => {
             <Link className={classes.link} to={"/createRecipe"}>Create Recipe</Link>
             <Link className={classes.link} to={"/me"}>My Profile</Link>
             <Button className={classes.navbarBtn} onClick={() => logout()}>Logout</Button>
-
         </div>
     )
 }

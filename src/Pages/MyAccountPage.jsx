@@ -8,7 +8,7 @@ import classes from "../Components/AccountInfo/AccountInfoStyle.module.css"
 
 const MyAccountPage = () => {
 
-    const {isAuth, setIsAuth, user, setUser} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [userRecipes, setUserRecipes] = useState([]);
     const [userFavouriteRecipes, setUserFavouriteRecipes] = useState([]);
     const [activeTab, setActiveTab] = useState("my");
@@ -37,7 +37,6 @@ const MyAccountPage = () => {
             }
 
             if (favs.status === 204) {
-                console.log(favs.status);
                 setNoFavouritesFound(true);
             } else {
                 setNoFavouritesFound(false);
@@ -69,11 +68,15 @@ const MyAccountPage = () => {
     }
 
     return (
-        <div>
-            <AccountInfoComponent />
+        <div className={classes.profileContainer}>
+            <AccountInfoComponent addedRecipesAmount={userRecipes.length} likedRecipesAmount={userFavouriteRecipes.length}/>
             <div className={classes.tabs}>
-                <Button className={classes.tabButton} onClick={() => {setActiveTab("my");}}>My recipes</Button>
-                <Button className={classes.tabButton} onClick={() => {setActiveTab("liked")}}>Liked recipes</Button>
+                <Button
+                    className={`${classes.tabButton} ${activeTab === 'my' ? classes.activeTab : ''}`}
+                    onClick={() => {setActiveTab("my");}}>My recipes</Button>
+                <Button
+                    className={`${classes.tabButton} ${activeTab === 'liked' ? classes.activeTab : ''}`}
+                    onClick={() => {setActiveTab("liked")}}>Liked recipes</Button>
             </div>
             {renderTab()}
         </div>
