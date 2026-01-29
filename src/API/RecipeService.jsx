@@ -29,8 +29,21 @@ export default class RecipeService extends React.Component {
     }
 
     static async saveRecipe(recipe) {
+        const formData = new FormData();
+        const recipeBlob = new Blob([JSON.stringify({
+            title: recipe.title,
+            shortDescription: recipe.shortDescription,
+            steps: recipe.steps,
+            ingredients: recipe.ingredients,
+            videoURL: recipe.videoURL
+        })], { type: 'application/json' });
+
+        formData.append("recipeJSON", recipeBlob);
+        if (recipe.image) {
+            formData.append("image", recipe.image);
+        }
         const response = await axios.post("http://localhost:8080/custom/addRecipe",
-            recipe,
+            formData,
             {withCredentials: true});
 
         return response;

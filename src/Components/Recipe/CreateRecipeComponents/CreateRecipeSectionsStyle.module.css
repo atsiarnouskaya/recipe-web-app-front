@@ -85,3 +85,30 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     background-color: #000;
 }
+
+.dropzone {
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    border: 1px dashed #cbd5e0;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7fafc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    color: #718096;
+    margin: 20px 0;
+}
+
+.imgPreview {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background-color: #000;
+}

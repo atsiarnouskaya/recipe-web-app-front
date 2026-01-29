@@ -11,6 +11,9 @@ const CreateRecipePage = () => {
     const [recipes, setRecipes] = useState([]);
 
     const [saveRecipe, isSaving, recipeSavingError] = useFetching(async (recipe) => {
+        if (recipe.image === null) {
+            recipe.image = "";
+        }
         const response = await RecipeService.saveRecipe(recipe)
         setRecipes([...recipes, response.data])
     })

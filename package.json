@@ -11,6 +11,7 @@
     "lottie-react": "^2.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-dropzone": "^14.3.8",
     "react-heart": "^1.0.6",
     "react-router-dom": "^7.9.1",
     "react-scripts": "5.0.1",

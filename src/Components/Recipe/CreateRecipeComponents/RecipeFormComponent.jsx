@@ -15,6 +15,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
         steps: '',
         ingredients: [],
         videoURL:'',
+        image: null
     });
 
     useEffect(() => {
@@ -33,7 +34,7 @@ const RecipeFormComponent = ({saveRecipe, initialRecipe}) => {
                 navigate("/allRecipes");
             }}>
 
-                <h2 className={classes.h2}>Create a new recipe</h2>
+                <h2 className={classes.h2}>Create a new recipe!</h2>
 
                 <div className={classes.columnsWrapper}>
 
