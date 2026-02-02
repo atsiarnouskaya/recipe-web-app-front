@@ -14,6 +14,13 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
     const [heartActive, setHeartActive] = useState(false);
     const [favouriteRecipes, setFavouriteRecipes] = useState([]);
 
+    const getOptimizedImage = (publicId) => {
+        const cloudName = 'dzarzvgmh';
+        const baseUrl = `https://res.cloudinary.com/${cloudName}/image/upload`;
+
+        return `${baseUrl}/w_600,h_400,c_fill,g_auto,f_auto,q_auto/${publicId}`;
+    };
+
     useEffect(() => {
         const getLikedRecipes = async () => {
             const response = await RecipeService.getUserFavouriteRecipes(user.id);
@@ -57,7 +64,10 @@ const Recipe = ({recipe, deleteRecipe, editRecipe}) => {
             <div className={classes.contentWrapper}>
                 <div className={classes.mediaColumn}>
                     <div className={classes.imagePlaceholder}>
-                        <span>Recipe image</span>
+                        {recipe.publicImageId && (
+                            <img src={getOptimizedImage(recipe.publicImageId)} alt="Recipe" />
+                        )}
+
                     </div>
                     {recipe.videoURL && (
                         <iframe
